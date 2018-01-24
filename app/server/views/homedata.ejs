@@ -21,25 +21,16 @@
 
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+<body  data-spy="scroll" >
 	<!-- Preloader -->
 	<div id="preloader">
 	  <div id="load"></div>
 	</div>
-
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand" href="index.html">
-                  <!--  <h1>LoRa Management Device</h1> -->
-                </a>
-            </div>
+    <nav class="navbar navbar-custom navbar-fixed-top " >
+        <div class="container" >
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-              <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse ">
+              <ul class="nav navbar-nav" style="background-color:#ccf2ff;">
                   <li><a href="/home">Back Home</a></li>
                   <li class="active"><a href="#intro">Dashboard</a></li>
                   <li><a href="/chart">Chart Simulation</a></li>
@@ -47,18 +38,67 @@
         		      <li><a href="/show">Database</a></li>
                   <li><a href="/raw">Data Realtime</a></li>
                   <li><a href="/web">Feature</a></li>
-
               </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
     </nav>
-    <section id="intro" class="intro">
-  		<div class="slogan">
-  			<h2><span class="text_color">MANAGER GATEWAY LORA</span> </h2>
-  			<h4>Information Of Technology University - Viet Nam National Ho Chi Minh City</h4>
+    <section id="homedata">
+      <div class="slogan">
+  			<h3><span style="color:white;font-weight: 500;"> LORA DEVICE</span> </h3>
   		</div>
+        <div class="container">
+          <div class="col-xs-2 col-sm-10 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="0.2s">
+                <div class="team boxed-grey">
+                      <h5> <center>LoRa Node</center></h5>
+                      <div class="avatar"><img src="img/loranode.png" alt="" class="img-responsive img-circle" style="width: 300px,;
+  height: 200px;" /></div>
+                  </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="0.6s">
+                <div class="team boxed-grey">
+                      <h5> <center>LoRa Gateway</center></h5>
+                      <div class="avatar"><img src="img/gateway.png" alt="" class="img-responsive img-circle" style="width: 300px,;
+  height: 200px;" /></div>
+                  </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="1s">
+                <div class="team boxed-grey">
+                      <h5> <center>Network Server</center></h5>
+                      <div class="avatar"><img src="img/server.jpg" alt="" class="img-responsive img-circle" style="width: 300px,;
+  height: 200px;" /></div>
+                  </div>
+            </div>
+          </div>
+          <div class="col-xs-6 col-sm-3 col-md-3">
+                <div class="wow bounceInUp" data-wow-delay="1.4s">
+                    <div class="team boxed-grey">
+                          <h5> <center>Application</center></h5>
+                          <div class="avatar"><img src="img/client.png" alt="" class="img-responsive img-circle" style="width: 300px,;
+      height: 200px;" /></div>
+                      </div>
+                </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-2 col-lg-offset-5">
+            <hr class="marginbot-50">
+          </div>
+
+        </div>
+          <div class="wow bounceInUp" data-wow-delay="1.8s">
+            <div><a style="color:white;font-weight: 500;"> Bui Van Xung - 13521067</a> </div>
+            <a style="color:white;font-weight: 500;"> Pham Le Dinh Duy - 13520159</a>
+            <p style="font-weight: 700; color:white;">  Research, Design and Build a basic monitoring system in building using LoRa Technology </p>
+          </div>
     </section>
+
 
     <!-- Core JavaScript Files -->
     <script src="js/js_page/jquery.min.js"></script>

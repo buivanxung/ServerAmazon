@@ -39,6 +39,21 @@ var configpg = {
   idleTimeoutMillis:30000,
 };
 var pool = new pg.Pool(configpg);
+var nodemailer = require('nodemailer');
+var hps = require('nodemailer-express-handlebars');
+
+var transporter = nodemailer.createTransport({
+  host: 'smtp.gmail.com',
+  auth: {
+    user: 'anhxungce@gmail.com',
+    pass: 'Anhxung13521067'
+  }
+});
+
+transporter.use('compile',hps({
+  viewPath:'app/server/views',
+  extName:'.ejs'
+}))
 
 
 module.exports = function(app) {
@@ -463,14 +478,31 @@ module.exports = function(app) {
   	         if (err) {
   	           return console.error('error fetching client from pool', err)
   	         }
-  	 	var raw_data = phyPayload1.toString();
-  	         var buf = new Buffer(phyPayload1,'base64');
+  	 	        var raw_data = phyPayload1.toString();
+  	          var buf = new Buffer(phyPayload1,'base64');
   	         var phyPayload2 = buf.toString();
-  	     //    console.log(phyPayload2);
   	         var wdata = phyPayload2.split(",");
   	         var temper = wdata[1];
   	         var humid = wdata[0];
-  	         client.query("INSERT INTO public.lora_imst(application_id, application_name, device_name, dev_eui, mac, gateway_name, rssi, frequency, coderate, lorasnr, modulation, spreadfactor, bandwidth, data, temperature, humidity, created_at, updated_at) VALUES('"+appID+"','"+appName+"','"+deviceName+"','"+devEUI+"','"+mac+"','"+gatewayName+"','"+rssi+"','"+frequency+"','"+codeRate+"','"+loRaSNR+"','"+modulation+"','"+spreadFactor+"','"+bandwidth+"','"+raw_data+"','"+temper+"','"+humid+"','Now()','Now()')", function(err, result) {
+             if ( temper > 37 || humid > 90 ) {
+               transporter.sendMail({
+                    from: 'anhxungce@gmail.com',
+                    to: 'xungbv.uit@gmail.com',
+                    subject:'System Warning',
+                    template:'mail',
+                    context: {
+                      appName,
+                      deviceName,
+                      humid,
+                      temper
+                    },function(err,response){
+                      if(err){
+                        console.log("Send error");
+                      }
+                    }
+                })
+             }
+      client.query("INSERT INTO public.lora_imst(application_id, application_name, device_name, dev_eui, mac, gateway_name, rssi, frequency, coderate, lorasnr, modulation, spreadfactor, bandwidth, data, temperature, humidity, created_at, updated_at) VALUES('"+appID+"','"+appName+"','"+deviceName+"','"+devEUI+"','"+mac+"','"+gatewayName+"','"+rssi+"','"+frequency+"','"+codeRate+"','"+loRaSNR+"','"+modulation+"','"+spreadFactor+"','"+bandwidth+"','"+raw_data+"','"+temper+"','"+humid+"','Now()','Now()')", function(err, result) {
   	           done();
   	           if (err) {
   	             return console.error('error happened during query', err)

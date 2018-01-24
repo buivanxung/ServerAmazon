@@ -299,9 +299,16 @@ hr {
 Home data
 */
 #homedata {
-    background-image: url(../img/bg2.jpg), url(../img/bg2.jpg);
-    background-position: right bottom, left top;
-    background-repeat: no-repeat, repeat;
+	  position:relative;
+    width:100%;
+    height: 100%;
+    text-align: center;
+    padding:20% 0 0 0;
+    background: url(../img/bg.jpg) no-repeat top center;
+    /*background-position: center;
+    background-origin: border-box;
+    background-size:contain;*/
+
 }
 
 /* ===========================
