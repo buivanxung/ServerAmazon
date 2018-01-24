@@ -484,6 +484,9 @@ module.exports = function(app) {
   	         var wdata = phyPayload2.split(",");
   	         var temper = wdata[1];
   	         var humid = wdata[0];
+             var name = deviceName.split("_");
+             var floor = "Floor" + " " + name[1];
+             var time = new Date() ;
              if ( temper > 37 || humid > 90 ) {
                transporter.sendMail({
                     from: 'anhxungce@gmail.com',
@@ -492,9 +495,10 @@ module.exports = function(app) {
                     template:'mail',
                     context: {
                       appName,
-                      deviceName,
+                      floor,
                       humid,
-                      temper
+                      temper,
+                      time
                     },function(err,response){
                       if(err){
                         console.log("Send error");
