@@ -82,7 +82,7 @@
                       <div style="line-height: 180%;color: #555;padding-right: 10px;padding-left: 10px;padding-top: 10px;padding-bottom: 10px">
                         <div style="font-size: 12px;line-height: 22px;color: #555;text-align: left">
                           <p style="margin: 0;font-size: 14px;line-height: 25px;text-align: center">
-                            <strong style="line-height: inherit">Hệ thống giám sát</strong> tòa nhà cảnh báo. Tại vị trí tầng  <strong style="font-size: 20px;line-height: inherit"> {{floor}}</strong> đã nhận được các số  liệu vượt ngưỡng cho phép. Dưới đây
+                            <strong style="line-height: inherit">Hệ thống giám sát</strong> tòa nhà cảnh báo. Tại vị trí tầng  <strong style="font-size: 20px;line-height: inherit"> <font color="red">{{floor}}</font></strong> đã nhận được các số  liệu vượt ngưỡng cho phép. Dưới đây
                             là thông tin của vị trí vượt ngưỡng cho phép.</p>
                         </div>
                       </div>
@@ -102,20 +102,20 @@
                         <div style="font-size: 12px;line-height: 14px;color: #555;text-align: left">
                           <p style="margin: 0;font-size: 14px;line-height: 17px;text-align: center">
                             <span style="font-size: 16px;line-height: 19px">
-                              <table style="width:100%" align="center">
-                                <tr>
-                                  <th>Application Name</th>
-                                  <th>Device Name</th>
-                                  <th>Temperature</th>
-                                  <th>Humidity</th>
-                                  <th>Time</th>
+                              <table align="center" style="width:100%; border: 2px solid blue;">
+                                <tr align="center" style=" border: 0.5px solid blue;">
+                                  <th align="center" style=" border: 0.2px solid blue;">Application Name</th>
+                                  <th align="center" style=" border: 0.2px solid blue;">Device Name</th>
+                                  <th align="center" style=" border: 0.2px solid blue;">Temperature</th>
+                                  <th align="center" style=" border: 0.2px solid blue;">Humidity</th>
+                                  <th align="center" style=" border: 0.2px solid blue;">Time</th>
                                 </tr>
-                                <tr>
-                                  <td><strong><font color="red">{{appName}}</font></strong></td>
-                                  <td><strong><font color="red">{{floor}}</font></strong></td>
-                                  <td><strong><font color="red">{{temper}}</font></strong></td>
-                                  <td><strong><font color="red">{{humid}}</font></strong></td>
-                                  <td><strong><font color="red">{{time}}</font></strong></td>
+                                <tr align="center" style="width:100%; border: 0.5px solid blue;">
+                                  <td align="center" style=" border: 0.2px solid blue;"><strong><font color="red">{{appName}}</font></strong></td>
+                                  <td align="center" style=" border: 0.2px solid blue;"><strong><font color="red">{{floor}}</font></strong></td>
+                                  <td align="center" style=" border: 0.2px solid blue;"><strong><font color="red">{{temper}}</font></strong></td>
+                                  <td align="center" style=" border: 0.2px solid blue;"><strong><font color="red">{{humid}}</font></strong></td>
+                                  <td align="center" style=" border: 0.2px solid blue;"><strong><font color="red">{{time}}</font></strong></td>
                                 </tr>
                               </table>
                             </span>

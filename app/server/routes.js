@@ -484,28 +484,6 @@ module.exports = function(app) {
   	         var wdata = phyPayload2.split(",");
   	         var temper = wdata[1];
   	         var humid = wdata[0];
-             var name = deviceName.split("_");
-             var floor = "Floor" + " " + name[1];
-             var time = new Date() ;
-             if ( temper > 37 || humid > 90 ) {
-               transporter.sendMail({
-                    from: 'anhxungce@gmail.com',
-                    to: 'xungbv.uit@gmail.com',
-                    subject:'System Warning',
-                    template:'mail',
-                    context: {
-                      appName,
-                      floor,
-                      humid,
-                      temper,
-                      time
-                    },function(err,response){
-                      if(err){
-                        console.log("Send error");
-                      }
-                    }
-                })
-             }
       client.query("INSERT INTO public.lora_imst(application_id, application_name, device_name, dev_eui, mac, gateway_name, rssi, frequency, coderate, lorasnr, modulation, spreadfactor, bandwidth, data, temperature, humidity, created_at, updated_at) VALUES('"+appID+"','"+appName+"','"+deviceName+"','"+devEUI+"','"+mac+"','"+gatewayName+"','"+rssi+"','"+frequency+"','"+codeRate+"','"+loRaSNR+"','"+modulation+"','"+spreadFactor+"','"+bandwidth+"','"+raw_data+"','"+temper+"','"+humid+"','Now()','Now()')", function(err, result) {
   	           done();
   	           if (err) {
