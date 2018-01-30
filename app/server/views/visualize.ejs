@@ -52,13 +52,15 @@
        </u>
       </div>
       <div>
-      <p>Visualize Data</p>
-      <p>------ </p>
+      <h5><strong>Visualize Level Signal</strong></h5>
     </div>
-    <table align="center">
+    <table>
       <p> </p>
       <tr>
-        <th style="width:400px;height:400px">
+        <th style="width:400px;height:400px; border-style: groove;">
+          <div>
+            <p><center>Data Realtime</center></p>
+          </div>
           <div>
             <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
         </div>
@@ -547,11 +549,11 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		type: "doughnut",
 		innerRadius: 90,
 		showInLegend: true,
-		toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-		indexLabel: "{name} - #percent%",
+		toolTipContent: "<b>{name}</b>: {y} dBm",
+		indexLabel: "{name} : {y} dBm",
 		dataPoints: [
-			{ y: -120, name: "RSSI" },
-			{ y: -250, name: "Others" }
+			{ y: -1, name: "RSSI" },
+			{ y: -0, name: "SNR" }
 		]
 	}]
 });
