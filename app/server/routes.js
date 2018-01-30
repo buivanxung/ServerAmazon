@@ -500,10 +500,76 @@ module.exports = function(app) {
   	 //////////////////////
   app.get("/raw", function(req,res) {
     if (req.session.user == null){
-      res.redirect('/');
+      res.redirect('/home');
     }	else{
   		 res.render("dataraw.ejs");
      }
+  });
+  app.get("/visualize", function(req,res) {
+    if (req.session.user == null){
+      res.redirect('/');
+    }	else{
+      pool.connect(function (err, client, done) {
+        if (err) {
+          return console.error('error fetching client from pool', err)
+        }
+        client.query("select rssi, created_at from lora_imst where device_name = 'Node_1'", function (err, node1) {
+          done();
+          if (err) {
+            res.end();}
+            client.query("select rssi, created_at from lora_imst where device_name = 'Node_2'", function (err, node2) {
+              done();
+              if (err) {
+                res.end();}
+                client.query("select rssi, created_at from lora_imst where device_name = 'Node_3'", function (err, node3) {
+                  done();
+                  if (err) {
+                    res.end();}
+                    client.query("select rssi, created_at from lora_imst where device_name = 'Node_4'", function (err, node4) {
+                      done();
+                      if (err) {
+                        res.end();}
+                        client.query("select rssi, created_at from lora_imst where device_name = 'Node_5'", function (err, node5) {
+                          done();
+                          if (err) {
+                            res.end();}
+                            client.query("select rssi, created_at from lora_imst where device_name = 'Node_6'", function (err, node6) {
+                              done();
+                              if (err) {
+                                res.end();}
+                                client.query("select rssi, created_at from lora_imst where device_name = 'Node_7'", function (err, node7) {
+                                  done();
+                                  if (err) {
+                                    res.end();}
+                                    client.query("select rssi, created_at from lora_imst where device_name = 'Node_8'", function (err, node8) {
+                                      done();
+                                      if (err) {
+                                        res.end();}
+                                        client.query("select rssi, created_at from lora_imst where device_name = 'Node_9'", function (err, node9) {
+                                          done();
+                                          if (err) {
+                                            res.end();}
+           res.render("visualize.ejs",{listN1:node1,
+                                    listN2:node2,
+                                    listN3:node3,
+                                    listN4:node4,
+                                    listN5:node5,
+                                    listN6:node6,
+                                    listN7:node7,
+                                    listN8:node8,
+                                    listN9:node9
+               }); //render
+              });
+             });
+            });
+           });
+          });
+         });
+        });
+       });
+      });
+     });
+   }
   });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
