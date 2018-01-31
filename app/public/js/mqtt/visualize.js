@@ -22,7 +22,7 @@ mqtt = new Paho.MQTT.Client(
   "web_" + parseInt(Math.random() * 100, 10)
 );
     var options = {
-        timeout: 3,
+        timeout: 10,
         useSSL: useTLS,
         cleanSession: cleansession,
         onSuccess: onConnect,
@@ -70,16 +70,21 @@ function parseData (data, str) {
   var value = data_b[1].split(',');
   return value[0];
 }
+var rssi, name, lat, long;
 function onMessageArrived(message) {
 
     var topic = message.destinationName;
     var payload = message.payloadString;
-    console.log(payload);
-      $('#rssi').val(parseData(payload,'rssi'));
+    rssi = parseData(payload,'rssi');
+    name = parseData(payload,'deviceName');
+    lat = parseData(payload,'latitude');
+    long = parseData(payload,'longitude');
+      $('#rssi').prepend(parseData(payload,'rssi'));
       $('#name').val(parseData(payload,'deviceName'));
       $('#lat').val(parseData(payload,'latitude'));
       $('#long').val(parseData(payload,'longitude'));
-      $('#ws').prepend('<li>'+ ' : ' + parseData(payload,'deviceName') +';'+  parseData(payload,'rssi') + ';' + parseData(payload,'latitude') + ';'+ parseData(payload,'longitude') + '.' +'</li>');
+      $('#ws').prepend('<li>' + parseData(payload,'deviceName') +';'+  parseData(payload,'rssi') + ';' + parseData(payload,'latitude') + ';'+ parseData(payload,'longitude') + '.' +'</li>');
+
 };
 function getdata( a, data) {
      //console.log(dot.pick(a,data));
@@ -89,6 +94,7 @@ function getdata( a, data) {
 $(document).ready(function() {
     MQTTconnect();
 });
+
 
 
 cleansession = true;

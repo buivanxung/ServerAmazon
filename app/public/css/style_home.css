@@ -865,3 +865,12 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+#circle {
+border: dashed 2px blue;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  text-align: center;
+  line-height: 60px;
+
+}

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title> Data Raw</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="30"> -->
     <script src="js/mqtt/mqttws31.js" type="text/javascript"></script>
     <script src="js/js_page/jquery.min.js" type="text/javascript"></script>
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -18,7 +18,9 @@
         $(document).ready(function() {
             MQTTconnect();
         });
+
     </script>
+
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -52,20 +54,30 @@
        </u>
       </div>
       <div>
-      <h5><strong>Visualize Level Signal</strong></h5>
+      <h5 style="background-color: powderblue"><strong>Visualize Level Signal</strong></h5>
     </div>
     <table>
       <p> </p>
       <tr>
-        <th style="width:400px;height:400px; border-style: groove;">
+        <th style="width:500px;height:400px; border-style: groove;">
           <div>
             <p><center>Data Realtime</center></p>
           </div>
           <div>
             <ul id='ws' style="font-family: 'Courier New', Courier, monospace;"></ul>
         </div>
-        <th style="width:400px;height:100%">
-          <div id="chartContainer" style="height: 400px; width: 100%;"></div>
+        <th style="width:400px;height:90%">
+          <div class="center">
+            <center>
+              <div>
+                <h4>Realtime RSSI with Node 1</h4>
+              </div>
+            <div id= "circle" style="text-align:center;">
+                <p> -- </p>
+              <h2 id="rssi"></h2>
+            </div>
+          </center>
+          </div>
         </th>
         <th style="height:400px; width:400px">
         <div id="map" style="width:100%;height:400px"></div>
@@ -100,8 +112,7 @@
     <td><div id="chartContainer7"  style="height: 200px; width: 100%; border-style: groove;"> </div></td>
   </tr>
 </section>
-
-  <section>
+<section>
     <div class="row">
       <div class="col-lg-2 col-lg-offset-5">
         <hr class="marginbot-50">
@@ -114,10 +125,14 @@
         <td><div id="chartContainer10"  style="height: 200px; width: 100%; border-style: groove;"> </div></td>
       </tr>
     </table>
-
 </table>
 </section>
+<div id="rssi"> </div>
 <script type="text/javascript">
+var checkedValue;
+var data = [];
+setInterval(function(){ checkedValue = document.getElementById("rssi").value; }, 30);
+console.log('rssi');
 window.onload = function () {
 var chart1 = new CanvasJS.Chart("chartContainer1", {
   theme:"dark2",
@@ -551,13 +566,10 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		showInLegend: true,
 		toolTipContent: "<b>{name}</b>: {y} dBm",
 		indexLabel: "{name} : {y} dBm",
-		dataPoints: [
-			{ y: -1, name: "RSSI" },
-			{ y: -0, name: "SNR" }
-		]
+		dataPoints: data
 	}]
 });
-chart.render();
+
 chart1.render();
 chart2.render();
 chart3.render();
@@ -591,20 +603,37 @@ function toggleDataSeries(e) {
 	} else {
 		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
 	}
-	e.chart.render();
-}
+  e.chart.render();
 
+}
+var updateInterval = 1000;
+var updateChart = function () {
+  if (checkedValue == null) {
+    checkedValue = 1;
+  }
+  else {
+    checkedValue = Number(checkedValue);
+    data = [
+     { y: checkedValue, name: "RSSI" },
+     { y: -0, name: "SNR" }
+   ];
+   checkedValue = null;
+  }
+	chart.render();
+};
+updateChart();
+setInterval(function () {
+  updateChart()
+}, updateInterval);
 }
 </script>
         <script>
           function initMap() {
             var myLatLng = {lat: 10.869767, lng: 106.802595};
-
             var map = new google.maps.Map(document.getElementById('map'), {
               zoom: 19,
               center: myLatLng
             });
-
             var marker = new google.maps.Marker({
               position: myLatLng,
               map: map,
