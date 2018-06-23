@@ -27,7 +27,7 @@
     "lora-packet": "^0.7.4",
     "moment": "2.10.3",
     "mongodb": "2.0.45",
-    "mqtt": "^2.9.2",
+    "mqtt": "^2.18.1",
     "nodemailer": "^4.4.2",
     "nodemailer-express-handlebars": "^2.0.0",
     "pg": "^7.4.0",

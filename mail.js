@@ -48,7 +48,7 @@ transporter.use('compile',hps({
   };
 
   client.on('connect', function () {
-  	   console.log('client connected:' + clientId)
+  	   console.log('connected:' + clientId)
   });
 
   client.on('error', function (err) {
