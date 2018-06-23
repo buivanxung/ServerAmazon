@@ -2,30 +2,19 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 
-var mqtt = require('mqtt')
 var dot = require('dot-object')
-var host = 'ws://18.217.3.199:8086'
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
-var client = mqtt.connect(host, options)
-
-var options = {
+var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
   keepalive: 10,
   clientId: clientId,
   protocolId: 'MQTT',
   protocolVersion: 4,
-  clean: true,
   reconnectPeriod: 1000,
   connectTimeout: 30 * 1000,
-  will: {
-    topic: 'WillMsg',
-    payload: 'Connection Closed abnormally..!',
-    qos: 0,
-    retain: false
-  },
-  username: 'demo',
-  password: 'demo',
+  username: 'xung',
+  password: '1234567',
   rejectUnauthorized: false
-}
+});
 
 var pg = require('pg')
 
@@ -450,9 +439,9 @@ module.exports = function(app) {
   	   client.end()
   });
 
-  client.subscribe('application/+/node/+/rx', { qos: 0 })
+  client.subscribe('application/+/device/+/rx', { qos: 0 })
   client.on('message', function (topic, message) {
-  	   //console.log(message.toString());
+  	   console.log(message.toString());
   	   try {
   	   var parse_data = JSON.parse(message);
   	   }
