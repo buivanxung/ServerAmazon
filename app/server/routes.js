@@ -4,7 +4,7 @@ var EM = require('./modules/email-dispatcher');
 
 var mqtt = require('mqtt')
 var dot = require('dot-object')
-var host = 'ws://18.217.3.199:8086'
+var host = 'mqtt://localhost:1883'
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 var client = mqtt.connect(host, options)
 
@@ -450,9 +450,9 @@ module.exports = function(app) {
   	   client.end()
   });
 
-  client.subscribe('application/+/node/+/rx', { qos: 0 })
+  client.subscribe('#', { qos: 0 })
   client.on('message', function (topic, message) {
-  	   //console.log(message.toString());
+  	   console.log(message.toString());
   	   try {
   	   var parse_data = JSON.parse(message);
   	   }
