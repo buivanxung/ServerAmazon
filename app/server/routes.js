@@ -2,7 +2,12 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 
-var dot = require('dot-object')
+var http = require('http');
+var socket = require('socket.io')(http);
+var dot = require('dot-object');
+
+var node= [0,0,0,0,0,0];
+
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
   keepalive: 10,
@@ -62,6 +67,10 @@ module.exports = function(app) {
   				res.status(200).send(o);
   			}
   		});
+  });
+
+  app.get('/image', function(req, res){
+  		res.render('image.ejs',{title:'image'});
   });
 
   // logged-in user homepage //
@@ -214,6 +223,8 @@ module.exports = function(app) {
   		})
   });
 
+  // view & delete accounts //
+
   app.get('/print', function(req, res) {
   		AM.getAllRecords( function(e, accounts){
   			res.render('print', { title : 'Account List', accts : accounts });
@@ -253,8 +264,10 @@ module.exports = function(app) {
   	        res.end();
   	        return console.error('error happened during query', err)
   	      }
-  	         res.render("showdata.ejs",{list:result});
-             console.log(result.rows[0]);
+  	      //  console.log( " Gia tri muon in: " + result.rows[0]);
+  	            res.render("showdata.ejs",{list:result});
+                //res.render("analyze.ejs",{list:result});
+                console.log(result.rows[0]);
   	     });
 
   	  });
@@ -264,8 +277,17 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-
-   }
+      pool.connect(function (err, client, done) {
+        if (err) {
+          return console.error('error fetching client from pool', err)
+        }
+        client.query("select id, temperature, humidity, created_at from lora_imst WHERE id = (select max(id) from lora_imst where device_name = 'Node_1')", function (err, node1) {
+          done();
+          if (err) {
+            res.end();}
+     });
+   })
+ }
    });
 
   app.get("/web", function(req,res) {
@@ -292,11 +314,25 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-
-    }
+        pool.connect(function (err, client, done) {
+          if (err) {
+            return console.error('error fetching client from pool', err);
+          }
+          client.query("SELECT temperature, humidity, created_at FROM lora_imst where device_name='Node_1'", function (err, node1){
+            done();
+            if (err) {res.end()};
+            if (node1 != 'undefined'){
+              node[0] = node1;
+            }else {
+              console.log("Error data.");
+            }
+      });//pool
+    })
+  }
   });
 
   function getdata( a, data) {
+  	   //console.log(dot.pick(a,data));
   	   return dot.pick( a,data);
   };
 
@@ -339,10 +375,10 @@ module.exports = function(app) {
   	         }
   	 	        var raw_data = phyPayload1.toString();
   	          var buf = new Buffer(phyPayload1,'base64');
-  	          var phyPayload2 = buf.toString();
-  	          var wdata = phyPayload2.split(",");
-  	          var temper = wdata[1];
-  	          var humid = wdata[0];
+  	         var phyPayload2 = buf.toString();
+  	         var wdata = phyPayload2.split(",");
+  	         var temper = wdata[1];
+  	         var humid = wdata[0];
       client.query("INSERT INTO public.lora_imst(application_id, application_name, device_name, dev_eui, mac, gateway_name, rssi, frequency, coderate, lorasnr, modulation, spreadfactor, bandwidth, data, temperature, humidity, created_at, updated_at) VALUES('"+appID+"','"+appName+"','"+deviceName+"','"+devEUI+"','"+mac+"','"+gatewayName+"','"+rssi+"','"+frequency+"','"+codeRate+"','"+loRaSNR+"','"+modulation+"','"+spreadFactor+"','"+bandwidth+"','"+raw_data+"','"+temper+"','"+humid+"','Now()','Now()')", function(err, result) {
   	           done();
   	           if (err) {
@@ -376,11 +412,15 @@ module.exports = function(app) {
           done();
           if (err) {
             res.end();}
-            res.send(node1);
-        })
-      })
-    }
-});
+     });
+   })
+ }
+  });
+  socket.on('connection', function (socket) {
+  console.log("New connection");
+  socket.on('web_control', function(data) {
+    });
+  });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
 };

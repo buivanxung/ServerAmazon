@@ -9,6 +9,7 @@ var cookieParser = require('cookie-parser');
 var MongoStore = require('connect-mongo')(session);
 var engines = require('consolidate');
 
+
 var app = express();
 
 app.locals.pretty = true;
