@@ -5,8 +5,11 @@ var EM = require('./modules/email-dispatcher');
 var http = require('http');
 var socket = require('socket.io')(http);
 var dot = require('dot-object');
+var events = require('events');
+var eventEmitter = new events.EventEmitter();
 
 var node= [0,0,0,0,0,0];
+
 
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
@@ -318,7 +321,7 @@ module.exports = function(app) {
           if (err) {
             return console.error('error fetching client from pool', err);
           }
-          client.query("SELECT temperature, humidity, created_at FROM lora_imst where device_name='Node_1'", function (err, node1){
+          client.query("SELECT temperature, humidity, created_at FROM lora_imst where device_name='Node_1' order by desc limit 100", function (err, node1){
             done();
             if (err) {res.end()};
             if (node1 != 'undefined'){
@@ -332,7 +335,6 @@ module.exports = function(app) {
   });
 
   function getdata( a, data) {
-  	   //console.log(dot.pick(a,data));
   	   return dot.pick( a,data);
   };
 
@@ -368,6 +370,7 @@ module.exports = function(app) {
   	   var spreadFactor = getdata('txInfo.dataRate.spreadFactor', parse_data);
   	   var bandwidth = getdata('txInfo.dataRate.bandwidth', parse_data);
   	   var phyPayload1 = getdata('data', parse_data);
+       eventEmitter.emit('message');
   	   if(codeRate != null) {
   	     pool.connect(function (err, client, done) {
   	         if (err) {
@@ -392,14 +395,6 @@ module.exports = function(app) {
   client.on('close', function () {
   	   console.log(clientId + ' disconnected')
   });
-  	 //////////////////////
-  app.get("/raw", function(req,res) {
-    if (req.session.user == null){
-      res.redirect('/home');
-    }	else{
-  		 res.render("dataraw.ejs");
-     }
-  });
   app.get("/visualize", function(req,res) {
     if (req.session.user == null){
       res.redirect('/');
@@ -416,10 +411,8 @@ module.exports = function(app) {
    })
  }
   });
-  socket.on('connection', function (socket) {
-  console.log("New connection");
-  socket.on('web_control', function(data) {
-    });
+  eventEmitter.on('message',function () {
+    socket.broadcast.emit("message", data);
   });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
