@@ -2,14 +2,16 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 
-var http = require('http');
+var express = require('express');
+var app = express();
+var http = require('http').Server(app);
 var socket = require('socket.io')(http);
 var dot = require('dot-object');
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
 
 var node= [0,0,0,0,0,0];
-
+var data = [node[0],node[1],node[2],node[3],node[4],node[5]];
 
 var clientId = 'mqttjs_' + Math.random().toString(16).substr(2, 8)
 var client =  require('mqtt').connect('mqtt://wirelesstech.online:1883', {
@@ -38,8 +40,6 @@ var configpg = {
 var pool = new pg.Pool(configpg);
 
 module.exports = function(app) {
-
-// main login page //
   app.get('/', function(req, res){
   	// check if the user's credentials are saved in a cookie //
   		if (req.cookies.user == undefined || req.cookies.pass == undefined){
@@ -76,8 +76,6 @@ module.exports = function(app) {
   		res.render('image.ejs',{title:'image'});
   });
 
-  // logged-in user homepage //
-
   app.get('/home', function(req, res) {
   		if (req.session.user == null){
   	// if user is not logged-in redirect back to login page //
@@ -92,6 +90,7 @@ module.exports = function(app) {
   			app.set('view engine', 'jade');
   		}
   });
+
   app.get('/homedata', function(req, res) {
       if (req.session.user == null){
     // if user is not logged-in redirect back to login page //
@@ -153,8 +152,6 @@ module.exports = function(app) {
 
   });
 
-  // creating new accounts //
-
   app.get('/signup', function(req, res) {
   		res.render('signup', {  title: 'Signup', countries : CT });
   });
@@ -174,8 +171,6 @@ module.exports = function(app) {
   			}
   		});
   });
-
-  // password reset //
 
   app.post('/lost-password', function(req, res){
   	// look up the user's account via their email //
@@ -226,8 +221,6 @@ module.exports = function(app) {
   		})
   });
 
-  // view & delete accounts //
-
   app.get('/print', function(req, res) {
   		AM.getAllRecords( function(e, accounts){
   			res.render('print', { title : 'Account List', accts : accounts });
@@ -276,10 +269,11 @@ module.exports = function(app) {
   	  });
     }
   });
+
   app.get("/action", function(req,res) {
     if (req.session.user == null){
       res.redirect('/');
-    }	else{
+      }	else{
       pool.connect(function (err, client, done) {
         if (err) {
           return console.error('error fetching client from pool', err)
@@ -288,10 +282,10 @@ module.exports = function(app) {
           done();
           if (err) {
             res.end();}
-     });
-   })
- }
-   });
+          });
+        })
+      }
+    });
 
   app.get("/web", function(req,res) {
     if (req.session.user == null){
@@ -316,7 +310,7 @@ module.exports = function(app) {
   app.get("/chart", function(req,res){
     if (req.session.user == null){
       res.redirect('/');
-    }	else{
+      }	else{
         pool.connect(function (err, client, done) {
           if (err) {
             return console.error('error fetching client from pool', err);
@@ -329,9 +323,9 @@ module.exports = function(app) {
             }else {
               console.log("Error data.");
             }
-      });//pool
-    })
-  }
+          });
+      })
+    }
   });
 
   function getdata( a, data) {
@@ -348,6 +342,7 @@ module.exports = function(app) {
   });
 
   client.subscribe('application/+/device/+/rx', { qos: 0 })
+
   client.on('message', function (topic, message) {
   	   console.log(message.toString());
   	   try {
@@ -395,6 +390,7 @@ module.exports = function(app) {
   client.on('close', function () {
   	   console.log(clientId + ' disconnected')
   });
+
   app.get("/visualize", function(req,res) {
     if (req.session.user == null){
       res.redirect('/');
@@ -409,11 +405,14 @@ module.exports = function(app) {
             res.end();}
      });
    })
- }
+    }
   });
-  eventEmitter.on('message',function () {
-    socket.broadcast.emit("message", data);
-  });
-  app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 
+  eventEmitter.on('message',function () {
+    socket.on('connection', function (io) {
+      io.broadcast.emit("message", data);
+      });
+  });
+
+  app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 };
