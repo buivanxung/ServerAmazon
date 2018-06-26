@@ -1,6 +1,6 @@
 
 
-var http = require('http');
+
 var express = require('express');
 var session = require('express-session');
 var bodyParser = require('body-parser');
@@ -9,8 +9,9 @@ var cookieParser = require('cookie-parser');
 var MongoStore = require('connect-mongo')(session);
 var engines = require('consolidate');
 
-
 var app = express();
+var http = require('http').Server(app);
+var io = require('socket.io')(http);
 
 app.locals.pretty = true;
 app.set('port', process.env.PORT || 3000);
@@ -41,7 +42,9 @@ if (app.get('env') == 'live'){
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 ////////////////////////////////////////////
 //
-
+io.on('connection', function (socket) {
+	console.log("New connection");
+});
 app.use(session({
 	secret: 'faeb4453e5d14fe6f6d04637f78077c76c73d1b4',
 	proxy: true,
@@ -53,4 +56,4 @@ app.use(session({
 
 require('./app/server/routes')(app);
 
-http.createServer(app).listen(8089);
+http.listen(8089);

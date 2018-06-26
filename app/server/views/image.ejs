@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" class="no-js">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width"/>
     <title>Image</title>
-    <script type="text/javascript" src="js_page/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/js_page/jquery-1.10.2.min.js"></script>
 		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-    <script src="js_page/jquery.min.js"></script>
-    <script src="js_page/bootstrap.min.js"></script>
+    <script src="js/js_page/jquery-1.12.4.js"></script>
+    <script src="js/js_page/jquery-ui.js"></script>
+    <script src="js/js_page/jquery.min.js"></script>
+    <script src="js/js_page/bootstrap.min.js"></script>
     <script type="text/javascript">
       var socket;
       $(document).ready(function()
@@ -18,21 +20,25 @@
             reconnectionDelayMax : 5000,
             reconnectionAttempts: 99999
           });
-          socket.on('message', function (data) {
+          socket.on('message_data', function (data) {
+            $('#temp1').html(data);
             console.log(data);
           });
-        }
-      })
+        })
     </script>
   </head>
   <body>
     <div class="">
       <p>Image 1</p>
-      <img src="img/lora.png" alt="">
+      <img src="img/lora.png" alt=""  width="100px" height="100px">
     </div>
     <div class="">
       <p>Image 2</p>
-      <img src="img/server.jpg" alt="">
+      <img src="img/server.jpg" alt="" width="100px" height="100px">
+    </div>
+    <div class="">
+      <p>Data</p>
+      <label for=""><span id="temp1"> </span></label>
     </div>
   </body>
 </html>

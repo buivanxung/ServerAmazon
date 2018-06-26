@@ -2,12 +2,13 @@ var CT = require('./modules/country-list');
 var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 
+var dot = require('dot-object');
+var events = require('events');
+
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
-var socket = require('socket.io')(http);
-var dot = require('dot-object');
-var events = require('events');
+var io = require('socket.io')(http);
 
 var eventEmitter = new events.EventEmitter();
 
@@ -39,6 +40,7 @@ var configpg = {
   idleTimeoutMillis:30000,
 };
 var pool = new pg.Pool(configpg);
+var i = false;
 
 module.exports = function(app) {
   app.get('/', function(req, res){
@@ -78,7 +80,7 @@ module.exports = function(app) {
       res.redirect('/');
     }	else{
   		res.render('image.ejs',{title:'image'});
-    }
+          }
   });
 
   app.get('/home', function(req, res) {
@@ -413,13 +415,21 @@ module.exports = function(app) {
     }
   });
 
-
   eventEmitter.on('message',function () {
-    socket.on('connection', function (io) {
-      console.log("sending");
-      io.broadcast.emit("message", data);
-    });
+    console.log("EventEmitter running");
+      i=true;
   });
-
+  io.on('connection', function (socket) {
+    console.log("New connection");
+    // setInterval(function () {
+    //   if (i == true) {
+    //     console.log("Sending");
+        socket.emit('message_data', "Data");
+    //     i = false;
+    //   }else {
+    //     console.log("error");
+    //   }
+    // }, 100);
+  });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 };
