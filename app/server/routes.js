@@ -8,6 +8,7 @@ var http = require('http').Server(app);
 var socket = require('socket.io')(http);
 var dot = require('dot-object');
 var events = require('events');
+
 var eventEmitter = new events.EventEmitter();
 
 var node= [0,0,0,0,0,0];
@@ -73,7 +74,11 @@ module.exports = function(app) {
   });
 
   app.get('/image', function(req, res){
+    if (req.session.user == null){
+      res.redirect('/');
+    }	else{
   		res.render('image.ejs',{title:'image'});
+    }
   });
 
   app.get('/home', function(req, res) {
@@ -408,10 +413,12 @@ module.exports = function(app) {
     }
   });
 
+
   eventEmitter.on('message',function () {
     socket.on('connection', function (io) {
+      console.log("sending");
       io.broadcast.emit("message", data);
-      });
+    });
   });
 
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });

@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
     <title>Image</title>
     <script type="text/javascript" src="js_page/jquery-1.10.2.min.js"></script>
-    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="js_page/jquery.min.js"></script>
+    <script src="js_page/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var socket;
+      $(document).ready(function()
+        {
+          socket = io.connect('http://localhost:8089',{
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax : 5000,
+            reconnectionAttempts: 99999
+          });
+          socket.on('message', function (data) {
+            console.log(data);
+          });
+        }
+      })
+    </script>
   </head>
   <body>
     <div class="">

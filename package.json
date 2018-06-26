@@ -23,7 +23,11 @@
     "excel-export": "^0.5.1",
     "express": "4.13.3",
     "express-session": "1.11.3",
+    "jQuery": "^1.7.4",
     "jade": "1.11.0",
+    "jdom": "^3.0.0",
+    "jquery": "^3.3.1",
+    "jsdom": "^11.11.0",
     "lora-packet": "^0.7.4",
     "moment": "2.10.3",
     "mongodb": "2.0.45",
@@ -32,6 +36,7 @@
     "nodemailer-express-handlebars": "^2.0.0",
     "pg": "^7.4.0",
     "pg-copy-streams": "^1.2.0",
+    "socket.io": "^2.1.1",
     "stylus": "0.52.4"
   },
   "engines": {
