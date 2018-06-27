@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Image</title>
+    <script type="text/javascript" src="app/public/js/js_page/jquery-1.10.2.min.js"></script>
+		<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script src="app/public/js/js_page/jquery-1.12.4.js"></script>
+    <script src="app/public/js/js_page/jquery-ui.js"></script>
+    <script src="app/public/js/js_page/jquery.min.js"></script>
+    <script src="app/public/js/js_page/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      var socket;
+      $(document).ready(function()
+        {
+          socket = io.connect('http://localhost:5000',{
+            reconnection: true,
+            reconnectionDelay: 1000,
+            reconnectionDelayMax : 5000,
+            reconnectionAttempts: 99999
+          });
+          socket.emit('reciver_data_rssi', " ");
+          socket.on('sending_data_rssi_Node_1', function (data) {
+            console.log(data);
+          });
+          socket.on('sending_data_rssi_Node_2', function (data) {
+            console.log(data);
+          });
+          socket.on('sending_data_rssi_Node_3', function (data) {
+            console.log(data);
+          });
+          socket.on('sending_data_rssi_Node_4', function (data) {
+            console.log(data);
+            $('temp1').html(data);
+          });
+          socket.on('sending_data_rssi_Node_5', function (data) {
+            console.log(data);
+          });
+        })
+    </script>
+  </head>
+  <body>
+    <div class="">
+      <p>Image 1</p>
+      <img src="img/lora.png" alt=""  width="100px" height="100px">
+    </div>
+    <div class="">
+      <p>Image 2</p>
+      <img src="img/server.jpg" alt="" width="100px" height="100px">
+    </div>
+    <div class="">
+      <p>Data</p>
+      <label for=""><span id="temp1"> </span></label>
+    </div>
+  </body>
+</html>

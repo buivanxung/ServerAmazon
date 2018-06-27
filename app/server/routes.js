@@ -32,7 +32,6 @@ var configpg = {
   idleTimeoutMillis:30000,
 };
 var pool = new pg.Pool(configpg);
-var i = false;
 
 module.exports = function(app) {
   app.get('/', function(req, res){
@@ -336,7 +335,7 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-
+      res.render("visualize.ejs");
     }
   });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
