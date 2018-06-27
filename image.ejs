@@ -10,6 +10,9 @@
     <script src="app/public/js/js_page/jquery-ui.js"></script>
     <script src="app/public/js/js_page/jquery.min.js"></script>
     <script src="app/public/js/js_page/bootstrap.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="js/views/canvasjs.min.js"></script>
     <script type="text/javascript">
       var socket;
       $(document).ready(function()
@@ -23,19 +26,7 @@
           socket.emit('reciver_data_rssi', " ");
           socket.on('sending_data_rssi_Node_1', function (data) {
             console.log(data);
-          });
-          socket.on('sending_data_rssi_Node_2', function (data) {
-            console.log(data);
-          });
-          socket.on('sending_data_rssi_Node_3', function (data) {
-            console.log(data);
-          });
-          socket.on('sending_data_rssi_Node_4', function (data) {
-            console.log(data);
-            $('temp1').html(data);
-          });
-          socket.on('sending_data_rssi_Node_5', function (data) {
-            console.log(data);
+            
           });
         })
     </script>
@@ -53,5 +44,51 @@
       <p>Data</p>
       <label for=""><span id="temp1"> </span></label>
     </div>
+    <div class="">
+      <div id="chartContainer" style="height: 300px; width: 100%; border-style: groove;"></div>
+    </div>
+    <script type="text/javascript">
+    window.onload = function () {
+
+    var chart1 = new CanvasJS.Chart("chartContainer", {
+      theme:"light2",
+      animationEnabled: true,
+      title:{
+        text: "Temperature"
+      },
+      axisY :{
+        includeZero: false,
+        title: "Temperature",
+        suffix: "oC"
+      },
+      toolTip: {
+        shared: "true"
+      },
+      legend:{
+        cursor:"pointer",
+        itemclick : toggleDataSeries
+      },
+      data: [{
+        type: "spline",
+        visible: true,
+        showInLegend: true,
+        yValueFormatString: "##.00 oC",
+        name: "Node 1",
+        dataPoints: [
+
+        ]
+      }]
+    });
+  chart1.render();
+  function toggleDataSeries(e) {
+  	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
+  		e.dataSeries.visible = false;
+  	} else {
+  		e.dataSeries.visible = true;
+  	}
+    chart1.render();
+  }
+}
+    </script>
   </body>
 </html>

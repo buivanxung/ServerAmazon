@@ -65,11 +65,7 @@ module.exports = function(app) {
   });
 
   app.get('/image', function(req, res){
-    if (req.session.user == null){
-      res.redirect('/');
-    }	else{
   		res.render('image.ejs',{title:'image'});
-          }
   });
   app.get('/home', function(req, res) {
   		if (req.session.user == null){
