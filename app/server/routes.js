@@ -3,14 +3,6 @@ var AM = require('./modules/account-manager');
 var EM = require('./modules/email-dispatcher');
 
 var dot = require('dot-object');
-var events = require('events');
-
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-
-var eventEmitter = new events.EventEmitter();
 
 var node= [0,0,0,0,0,0];
 var data = [node[0],node[1],node[2],node[3],node[4],node[5]];
@@ -44,11 +36,9 @@ var i = false;
 
 module.exports = function(app) {
   app.get('/', function(req, res){
-  	// check if the user's credentials are saved in a cookie //
   		if (req.cookies.user == undefined || req.cookies.pass == undefined){
   			res.render('login', { title: 'Hello - Please Login To Your Account' });
   		}	else{
-  	// attempt automatic login //
   			AM.autoLogin(req.cookies.user, req.cookies.pass, function(o){
   				if (o != null){
   				    req.session.user = o;
@@ -82,10 +72,8 @@ module.exports = function(app) {
   		res.render('image.ejs',{title:'image'});
           }
   });
-
   app.get('/home', function(req, res) {
   		if (req.session.user == null){
-  	// if user is not logged-in redirect back to login page //
   			res.redirect('/');
   		}	else{
   			app.set('view engine', 'ejs');
@@ -100,7 +88,6 @@ module.exports = function(app) {
 
   app.get('/homedata', function(req, res) {
       if (req.session.user == null){
-    // if user is not logged-in redirect back to login page //
         res.redirect('/');
       }	else{
         app.set('view engine', 'ejs');
@@ -115,7 +102,6 @@ module.exports = function(app) {
 
   app.get('/user', function(req, res) {
   		if (req.session.user == null){
-  	// if user is not logged-in redirect back to login page //
   			res.redirect('/');
   		}	else{
   			res.render('home', {
@@ -256,24 +242,7 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-  	  pool.connect(function (err, client, done) {
-  	    if (err) {
-  	      return console.error('error fetching client from pool', err)
-  	    }
-  	    client.query("SELECT * FROM lora_imst", function (err, result) {
-  	      done();
-
-  	      if (err) {
-  	        res.end();
-  	        return console.error('error happened during query', err)
-  	      }
-  	      //  console.log( " Gia tri muon in: " + result.rows[0]);
-  	            res.render("showdata.ejs",{list:result});
-                //res.render("analyze.ejs",{list:result});
-                console.log(result.rows[0]);
-  	     });
-
-  	  });
+  	  res.render("showdata.ejs");
     }
   });
 
@@ -281,16 +250,6 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
       }	else{
-      pool.connect(function (err, client, done) {
-        if (err) {
-          return console.error('error fetching client from pool', err)
-        }
-        client.query("select id, temperature, humidity, created_at from lora_imst WHERE id = (select max(id) from lora_imst where device_name = 'Node_1')", function (err, node1) {
-          done();
-          if (err) {
-            res.end();}
-          });
-        })
       }
     });
 
@@ -298,19 +257,7 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-  	  pool.connect(function (err, client, done) {
-  	    if (err) {
-  	      return console.error('error fetching client from pool', err)
-  	    }
-  	    client.query('SELECT * FROM lora_imst', function (err, result) {
-  	      done();
-  	      if (err) {
-  	        res.end();
-  	        return console.error('error happened during query', err)
-  	       }       //  console.log( " Gia tri muon in: " + result.rows[0].id);
-  	       res.render("webdata.ejs",{list:result});
-  	     });
-  	   });
+       res.render("webdata.ejs");
      }
   });
   //-----------------------------------------------------------------------------------
@@ -318,20 +265,7 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
       }	else{
-        pool.connect(function (err, client, done) {
-          if (err) {
-            return console.error('error fetching client from pool', err);
-          }
-          client.query("SELECT temperature, humidity, created_at FROM lora_imst where device_name='Node_1' order by desc limit 100", function (err, node1){
-            done();
-            if (err) {res.end()};
-            if (node1 != 'undefined'){
-              node[0] = node1;
-            }else {
-              console.log("Error data.");
-            }
-          });
-      })
+      res.render("webdata.ejs");
     }
   });
 
@@ -402,34 +336,8 @@ module.exports = function(app) {
     if (req.session.user == null){
       res.redirect('/');
     }	else{
-      pool.connect(function (err, client, done) {
-        if (err) {
-          return console.error('error fetching client from pool', err)
-        }
-        client.query("select rssi, created_at from lora_imst where device_name = 'Node_1'", function (err, node1) {
-          done();
-          if (err) {
-            res.end();}
-     });
-   })
-    }
-  });
 
-  eventEmitter.on('message',function () {
-    console.log("EventEmitter running");
-      i=true;
-  });
-  io.on('connection', function (socket) {
-    console.log("New connection");
-    // setInterval(function () {
-    //   if (i == true) {
-    //     console.log("Sending");
-        socket.emit('message_data', "Data");
-    //     i = false;
-    //   }else {
-    //     console.log("error");
-    //   }
-    // }, 100);
+    }
   });
   app.get('*', function(req, res) { res.render('404', { title: 'Page Not Found'}); });
 };
