@@ -3,13 +3,19 @@
   <head>
     <meta charset="utf-8">
     	<title>Show Data Realtime</title>
-    	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-      <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+      <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+      <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+      <script src="js/views/canvasjs.min.js"></script>
 	    <link href="css/animate.css" rel="stylesheet" />
-    <!-- Squad theme CSS -->
       <link href="css/style_home.css" rel="stylesheet">
 	    <link href="color/default.css" rel="stylesheet">
+      <script type="text/javascript" src="js/js_page/jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script src="js/js_page/jquery-1.12.4.js"></script>
+      <script src="js/js_page/jquery-ui.js"></script>
+      <script src="js/js_page/jquery.min.js"></script>
+      <script src="js/js_page/bootstrap.min.js"></script>
+      <script src="js/socket/monitoring.js"></script>
 
   <style>
      ul.nav-pills {
@@ -298,9 +304,7 @@
   		yValueFormatString: "##.00 oC",
   		name: "Node 1",
   		dataPoints: [
-       <% listN1.rows.forEach(function(dl) { %>
-       <%= "{ y: "+dl.temperature+" }," %>
-       <% }); %>
+
   		]
   	},
   	{
@@ -310,9 +314,7 @@
   		yValueFormatString: "##.00 oC",
   		name: "Node 2",
       dataPoints: [
-        <% listN2.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
   	},
     {
@@ -322,9 +324,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 3",
       dataPoints: [
-        <% listN3.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     },
     {
@@ -334,9 +334,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 4",
       dataPoints: [
-        <% listN4.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     },
   	{
@@ -345,9 +343,7 @@
   		yValueFormatString: "##.00 oC",
   		name: "Node 5",
   		dataPoints: [
-        <% listN5.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
   		]
   	},
     {
@@ -356,9 +352,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 6",
       dataPoints: [
-        <% listN6.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     },
     {
@@ -367,9 +361,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 7",
       dataPoints: [
-        <% listN7.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     },
     {
@@ -378,9 +370,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 8",
       dataPoints: [
-        <% listN8.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     },
     {
@@ -389,9 +379,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 9",
       dataPoints: [
-        <% listN9.rows.forEach(function(dl) { %>
-        <%= "{ y: "+dl.temperature+" }," %>
-        <% }); %>
+
       ]
     }]
   });
@@ -421,9 +409,7 @@
               yValueFormatString: "##.00",
               name: "Node 1",
               dataPoints: [
-               <% listN1.rows.forEach(function(dl) { %>
-               <%= "{ y: "+dl.humidity+" }," %>
-               <% }); %>
+
               ]
             },
             {
@@ -433,9 +419,7 @@
               yValueFormatString: "##.00",
               name: "Node 2",
               dataPoints: [
-                <% listN2.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -445,9 +429,7 @@
               yValueFormatString: "##.00",
               name: "Node 3",
               dataPoints: [
-                <% listN3.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -457,9 +439,7 @@
               yValueFormatString: "##.00",
               name: "Node 4",
               dataPoints: [
-                <% listN4.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -468,9 +448,7 @@
               yValueFormatString: "##.00",
               name: "Node 5",
               dataPoints: [
-                <% listN5.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -479,9 +457,7 @@
               yValueFormatString: "##.00",
               name: "Node 6",
               dataPoints: [
-                <% listN6.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -490,9 +466,7 @@
               yValueFormatString: "##.00",
               name: "Node 7",
               dataPoints: [
-                <% listN7.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -501,9 +475,7 @@
               yValueFormatString: "##.00",
               name: "Node 8",
               dataPoints: [
-                <% listN8.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             },
             {
@@ -512,9 +484,7 @@
               yValueFormatString: "##.00",
               name: "Node 9",
               dataPoints: [
-                <% listN9.rows.forEach(function(dl) { %>
-                <%= "{ y: "+dl.humidity+" }," %>
-                <% }); %>
+
               ]
             }]
           });
@@ -543,9 +513,7 @@
       yValueFormatString: "##.00",
       name: "Node 1",
       dataPoints: [
-       <% listN1.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %>},
-       <% }); %>
+
       ]
     }]
   });
@@ -574,9 +542,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 1",
       dataPoints: [
-       <% listN1.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -605,9 +571,7 @@
       yValueFormatString: "##.00",
       name: "Node 2",
       dataPoints: [
-       <% listN2.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %>},
-       <% }); %>
+
       ]
     }]
   });
@@ -636,9 +600,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 2",
       dataPoints: [
-       <% listN2.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -667,9 +629,7 @@
       yValueFormatString: "##.00",
       name: "Node 3",
       dataPoints: [
-       <% listN3.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -698,9 +658,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 3",
       dataPoints: [
-       <% listN3.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -729,9 +687,7 @@
       yValueFormatString: "##.00",
       name: "Node 4",
       dataPoints: [
-       <% listN4.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %>},
-       <% }); %>
+
       ]
     }]
   });
@@ -760,9 +716,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 4",
       dataPoints: [
-       <% listN4.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -791,9 +745,7 @@
       yValueFormatString: "##.00",
       name: "Node 5",
       dataPoints: [
-       <% listN5.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -822,9 +774,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 5",
       dataPoints: [
-       <% listN5.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -853,9 +803,7 @@
       yValueFormatString: "##.00",
       name: "Node 6",
       dataPoints: [
-       <% listN6.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -884,9 +832,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 6",
       dataPoints: [
-       <% listN6.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -915,9 +861,7 @@
       yValueFormatString: "##.00",
       name: "Node 7",
       dataPoints: [
-       <% listN7.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -946,9 +890,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 7",
       dataPoints: [
-       <% listN7.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -977,9 +919,7 @@
       yValueFormatString: "##.00",
       name: "Node 8",
       dataPoints: [
-       <% listN8.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -1008,9 +948,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 8",
       dataPoints: [
-       <% listN8.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %> },
-       <% }); %>
+
       ]
     }]
   });
@@ -1039,9 +977,7 @@
       yValueFormatString: "##.00",
       name: "Node 9",
       dataPoints: [
-       <% listN9.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.humidity %>},
-       <% }); %>
+
       ]
     }]
   });
@@ -1070,9 +1006,7 @@
       yValueFormatString: "##.00 oC",
       name: "Node 9",
       dataPoints: [
-       <% listN9.rows.forEach(function(dl) { %>
-       { label: '<%=  dl.created_at %>', <%= 'y:' +dl.temperature %>},
-       <% }); %>
+
       ]
     }]
   });

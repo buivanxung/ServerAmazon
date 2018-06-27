@@ -237,34 +237,20 @@ module.exports = function(app) {
   		});
   });
 
-  app.get("/show", function(req,res) {
-    if (req.session.user == null){
-      res.redirect('/');
-    }	else{
-  	  res.render("showdata.ejs");
-    }
-  });
-
   app.get("/action", function(req,res) {
     if (req.session.user == null){
       res.redirect('/');
       }	else{
+        res.render("actiondata.ejs");
       }
     });
 
-  app.get("/web", function(req,res) {
-    if (req.session.user == null){
-      res.redirect('/');
-    }	else{
-       res.render("webdata.ejs");
-     }
-  });
   //-----------------------------------------------------------------------------------
   app.get("/chart", function(req,res){
     if (req.session.user == null){
       res.redirect('/');
       }	else{
-      res.render("webdata.ejs");
+      res.render("analyze.ejs");
     }
   });
 

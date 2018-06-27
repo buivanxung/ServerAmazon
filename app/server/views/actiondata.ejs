@@ -8,6 +8,13 @@
 	    <link href="css/animate.css" rel="stylesheet" />
     	<link href="css/style_home.css" rel="stylesheet">
 	    <link href="color/default.css" rel="stylesheet">
+      <script type="text/javascript" src="js/js_page/jquery-1.10.2.min.js"></script>
+      <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+      <script src="js/js_page/jquery-1.12.4.js"></script>
+      <script src="js/js_page/jquery-ui.js"></script>
+      <script src="js/js_page/jquery.min.js"></script>
+      <script src="js/js_page/bootstrap.min.js"></script>
+      <script src="js/socket/show.js"></script>
       <style>
           ul.nav-pills {
          top: 50px;
@@ -59,11 +66,11 @@
                       </div>
                       <div class="col-xs-4 col-sm-4 col-md-4">
                       <p  class="subtitle">Temper</p>
-                        <span> <h5> &nbsp;<%= actN1.rows[0].temperature %>&deg;C</h5></span>
+                        <h5>  &nbsp;<span id="n1Temper">&deg;C</span></h5>
                         </div>
                         <div class="col-xs-5 col-sm-5 col-md-5">
                         <p class="subtitle">Humid</p>
-                            <h5>  &nbsp;<%= actN1.rows[0].humidity %>&permil;</h5>
+                            <h5> &nbsp;<span id="n1Humid">&permil;</span></h5>
                           </div>
                   </div>
                                </div>
@@ -107,11 +114,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-		<span> <h5> &nbsp;<%= actN2.rows[0].temperature %>&deg;C</h5></span>
+                  <h5>  &nbsp;<span id="n2Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5>  &nbsp;<%= actN2.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n2Humid">&permil;</span></h5>
                     </div>
             </div>
                         </div>
@@ -134,11 +141,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5> &nbsp;<%= actN3.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n3Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN3.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n3Humid">&permil;</span></h5>
                     </div>
             </div>
                           </label>
@@ -163,11 +170,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN4.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n4Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN4.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n4Humid">&permil;</span></h5>
                     </div>
             </div>
                           </label>
@@ -192,11 +199,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN5.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n5Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN5.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n5Humid">&permil;</span></h5>
                     </div>
             </div>
                     </div>
@@ -229,11 +236,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN6.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n6Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN6.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n6Humid">&permil;</span></h5>
                     </div>
             </div>
                          </div>
@@ -256,11 +263,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN7.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n7Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN7.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n7Humid">&permil;</span></h5>
                     </div>
             </div>
                         </div>
@@ -283,11 +290,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN8.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n8Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN8.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n8Humid">&permil;</span></h5>
                     </div>
             </div>
                         </div>
@@ -310,11 +317,11 @@
                 </div>
                 <div class="col-xs-4 col-sm-4 col-md-4">
                 <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<%= actN9.rows[0].temperature %>&deg;C</h5>
+                  <h5>  &nbsp;<span id="n9Temper">&deg;C</span></h5>
                   </div>
                   <div class="col-xs-5 col-sm-5 col-md-5">
                   <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<%= actN9.rows[0].humidity %>&permil;</h5>
+                      <h5> &nbsp;<span id="n9Humid">&permil;</span></h5>
                     </div>
             </div>
                         </div>
@@ -335,7 +342,6 @@
   <script src="js/js_page/jquery.easing.min.js"></script>
   <script src="js/js_page/jquery.scrollTo.js"></script>
   <script src="js/js_page/wow.min.js"></script>
-  <!-- Custom Theme JavaScript -->
   <script src="js/js_page/custom.js"></script>
   </body>
   </html>
