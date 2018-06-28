@@ -119,6 +119,6 @@ function query_page_show(nameNode) {
     });
   }
 });
-http.listen(6000, function () {
+http.listen(3000, function () {
   console.log("Server running");
 });

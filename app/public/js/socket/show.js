@@ -1,7 +1,7 @@
 var socket;
 $(document).ready(function()
   {
-    socket = io.connect('http://wirelesstech.online:6000',{
+    socket = io.connect('http://wirelesstech.online:3000',{
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax : 5000,
@@ -9,7 +9,7 @@ $(document).ready(function()
     });
     $('#n1Temper').html("0 &deg;C");
     $('#n2Temper').html("0 &deg;C");
-    $('#n3Temper').html("0 &deg;C"); 
+    $('#n3Temper').html("0 &deg;C");
     $('#n4Temper').html("0 &deg;C");
     $('#n5Temper').html("0 &deg;C");
     $('#n6Temper').html("0 &deg;C");
