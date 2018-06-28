@@ -554,5 +554,5 @@ window.onload = function () {
       chart14.render();
       dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
   };
-  setInterval(function(){updateChart()}, 3000);
+  setInterval(function(){updateChart()}, 5000);
 }

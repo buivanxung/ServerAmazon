@@ -22,29 +22,39 @@ $(document).ready(function()
 
     socket.emit('reciver_data_show', " ");
     socket.on('sending_data_show_Node_1', function (data) {
-      $('#n1Temper').html(data[0].temperature + " &deg;C");
-      $('#n1Humid').html(data[0].humidity + " %");
-      console.log(data);
+        if (data != "Err") {
+          $('#n1Temper').html(data[0].temperature + " &deg;C");
+          $('#n1Humid').html(data[0].humidity + " %");
+        }
     });
     socket.on('sending_data_show_Node_2', function (data) {
-      $('#n2Temper').html(data[0].temperature + " &deg;C");
-      $('#n2Humid').html(data[0].humidity + " %");
+        if (data != "Err") {
+          $('#n2Temper').html(data[0].temperature + " &deg;C");
+          $('#n2Humid').html(data[0].humidity + " %");
+        }
     });
     socket.on('sending_data_show_Node_3', function (data) {
-      $('#n3Temper').html(data[0].temperature + " &deg;C");
-      $('#n3Humid').html(data[0].humidity + " %");
+        if (data != "Err") {
+          $('#n3Temper').html(data[0].temperature + " &deg;C");
+          $('#n3Humid').html(data[0].humidity + " %");
+        }
     });
     socket.on('sending_data_show_Node_4', function (data) {
-      $('#n4Temper').html(data[0].temperature + " &deg;C");
-      $('#n4Humid').html(data[0].humidity + " %");
+        if (data != "Err") {
+          $('#n4Temper').html(data[0].temperature + " &deg;C");
+          $('#n4Humid').html(data[0].humidity + " %");
+        }
     });
     socket.on('sending_data_show_Node_5', function (data) {
-      $('#n5Temper').html(data[0].temperature + " &deg;C");
-      $('#n5Humid').html(data[0].humidity + " %");
+        if (data != "Err") {
+          $('#n5Temper').html(data[0].temperature + " &deg;C");
+          $('#n5Humid').html(data[0].humidity + " %");
+        }
     });
     socket.on('sending_data_rssi_Node_6', function (data) {
-      $('#n6Temper').html(data[0].temperature + " &deg;C");
-      $('#n6Humid').html(data[0].humidity + " %");
+        if (data != "Err") {
+          $('#n6Temper').html(data[0].temperature + " &deg;C");
+          $('#n6Humid').html(data[0].humidity + " %");
+      }
     });
-
   })

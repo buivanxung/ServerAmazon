@@ -287,7 +287,6 @@ module.exports = function(app) {
   	   var spreadFactor = getdata('txInfo.dataRate.spreadFactor', parse_data);
   	   var bandwidth = getdata('txInfo.dataRate.bandwidth', parse_data);
   	   var phyPayload1 = getdata('data', parse_data);
-       eventEmitter.emit('message');
   	   if(codeRate != null) {
   	     pool.connect(function (err, client, done) {
   	         if (err) {
