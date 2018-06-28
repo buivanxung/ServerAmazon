@@ -260,7 +260,7 @@ $(document).ready(function()
             }
           }
           if (message[1] != " ") {
-            for (var i = limit - 1; i >= 0; i--){
+            for (var i = message[1].length - 1; i >= 0; i--){
               dataPoints[1].push({
                 label : message[1][i].created_at,
                 y : parseInt(message[1][i].rssi)
@@ -268,7 +268,7 @@ $(document).ready(function()
               }
             }
             if (message[2] != " ") {
-              for (var i = limit - 1; i >= 0; i--){
+              for (var i = message[2].length - 1; i >= 0; i--){
                 dataPoints[2].push({
                   label : message[2][i].created_at,
                   y : parseInt(message[2][i].rssi)
@@ -276,7 +276,7 @@ $(document).ready(function()
                 }
               }
               if (message[3] != " ") {
-                for (var i = limit - 1; i >= 0; i--){
+                for (var i = message[3].length - 1; i >= 0; i--){
                   dataPoints[3].push({
                     label : message[3][i].created_at,
                     y : parseInt(message[3][i].rssi)
@@ -284,7 +284,7 @@ $(document).ready(function()
                   }
                 }
                 if (message[4] != " ") {
-                  for (var i = limit - 1; i >= 0; i--){
+                  for (var i = message[4].length - 1; i >= 0; i--){
                     dataPoints[4].push({
                       label : message[4][i].created_at,
                       y : parseInt(message[4][i].rssi)
@@ -292,7 +292,7 @@ $(document).ready(function()
                     }
                   }
                   if (message[5] != " ") {
-                    for (var i = limit - 1; i >= 0; i--){
+                    for (var i = message[5].length - 1; i >= 0; i--){
                       dataPoints[5].push({
                         label : message[5][i].created_at,
                         y : parseInt(message[5][i].rssi)

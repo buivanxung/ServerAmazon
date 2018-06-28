@@ -3,7 +3,7 @@ var message = [[],[],[],[],[],[]];
 var limit = 100;
 $(document).ready(function()
   {
-    socket = io.connect('http://localhost:5000',{
+    socket = io.connect('http://wirelesstech.online:5000',{
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax : 5000,
@@ -30,7 +30,6 @@ $(document).ready(function()
     });
   })
 window.onload = function () {
-  console.log("Running");
     var dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
     var chart1 = new CanvasJS.Chart("chartContainer", {
       theme:"light2",
@@ -467,7 +466,6 @@ window.onload = function () {
     chart13.render();
     chart14.render();
     var updateChart = function () {
-      console.log("Running update");
       if (message[0] != " ") {
         for (var i = limit - 1; i >= 0; i--){
           dataPoints[0].push({
@@ -481,7 +479,7 @@ window.onload = function () {
           }
         }
       if (message[1] != " ") {
-        for (var i = limit - 1; i >= 0; i--){
+        for (var i = message[1].length - 1; i >= 0; i--){
           dataPoints[1].push({
             label : message[1][i].created_at,
             y : parseInt(message[1][i].temperature)
@@ -493,7 +491,7 @@ window.onload = function () {
           }
         }
       if (message[2] != " ") {
-        for (var i = limit - 1; i >= 0; i--){
+        for (var i = message[2].length - 1; i >= 0; i--){
           dataPoints[2].push({
             label : message[2][i].created_at,
             y : parseInt(message[2][i].temperature)
@@ -505,7 +503,7 @@ window.onload = function () {
           }
         }
       if (message[3] != " ") {
-        for (var i = limit - 1; i >= 0; i--){
+        for (var i =message[3].length - 1; i >= 0; i--){
           dataPoints[3].push({
             label : message[3][i].created_at,
             y : parseInt(message[3][i].temperature)
@@ -517,7 +515,7 @@ window.onload = function () {
           }
         }
       if (message[4] != " ") {
-        for (var i = limit - 1; i >= 0; i--){
+        for (var i = message[4].length - 1; i >= 0; i--){
           dataPoints[4].push({
             label : message[4][i].created_at,
             y : parseInt(message[4][i].temperature)
@@ -527,11 +525,9 @@ window.onload = function () {
             y : parseInt(message[4][i].humidity)
           });
           }
-          console.log(dataPoints[4]);
         }
       if (message[5] != " ") {
-        console.log(message[5]);
-        for (var i = limit - 1; i >= 0; i--){
+        for (var i = message[5].length - 1; i >= 0; i--){
           dataPoints[5].push({
             label : message[5][i].created_at,
             y : parseInt(message[5][i].temperature)
@@ -556,7 +552,6 @@ window.onload = function () {
       chart12.render();
       chart13.render();
       chart14.render();
-      console.log(dataPoints);
       dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
   };
   setInterval(function(){updateChart()}, 3000);
