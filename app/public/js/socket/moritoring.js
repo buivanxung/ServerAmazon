@@ -447,7 +447,7 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "## oC",
+        yValueFormatString: "##.00 oC",
         name: "Node 6",
         dataPoints: dataPoints[5]
       }]
