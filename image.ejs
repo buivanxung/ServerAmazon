@@ -10,13 +10,16 @@
     <script src="app/public/js/js_page/jquery-ui.js"></script>
     <script src="app/public/js/js_page/jquery.min.js"></script>
     <script src="app/public/js/js_page/bootstrap.min.js"></script>
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <script src="js/views/canvasjs.min.js"></script>
+    <link href="app/public/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="app/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="app/public/js/views/canvasjs.min.js"></script>
+    <script src="app/public/js/js_page/jquery.canvasjs.min.js"></script>
     <script type="text/javascript">
       var socket;
+      var message = [];
       $(document).ready(function()
         {
+
           socket = io.connect('http://localhost:5000',{
             reconnection: true,
             reconnectionDelay: 1000,
@@ -25,10 +28,50 @@
           });
           socket.emit('reciver_data_rssi', " ");
           socket.on('sending_data_rssi_Node_1', function (data) {
-            console.log(data);
-            
+            message = data;
           });
-        })
+      })
+    window.onload = function () {
+        var dataPoints = [];
+        var chart = new CanvasJS.Chart("chartContainer", {
+          theme:"light2",
+              animationEnabled: true,
+              title:{
+                text: "Temperature"
+              },
+              axisY :{
+                includeZero: false,
+                title: "Temperature",
+                suffix: "oC"
+              },
+              toolTip: {
+                shared: "true"
+              },
+              data: [{
+                type: "spline",
+                visible: true,
+                showInLegend: true,
+                yValueFormatString: "##.00 oC",
+                name: "Node 1",
+                dataPoints: dataPoints
+              }]
+          });
+        chart.render();
+        var updateChart = function () {
+          console.log(message);
+          if (message != " ") {
+            for (var i = 99; i >= 0; i--){
+              dataPoints.push({
+                label : message[i].created_at,
+                y : parseInt(message[i].rssi)
+              });
+              }
+            }
+        chart.render();
+        dataPoints = [];
+        };
+        setInterval(function(){updateChart()}, 3000);
+        }
     </script>
   </head>
   <body>
@@ -47,48 +90,5 @@
     <div class="">
       <div id="chartContainer" style="height: 300px; width: 100%; border-style: groove;"></div>
     </div>
-    <script type="text/javascript">
-    window.onload = function () {
-
-    var chart1 = new CanvasJS.Chart("chartContainer", {
-      theme:"light2",
-      animationEnabled: true,
-      title:{
-        text: "Temperature"
-      },
-      axisY :{
-        includeZero: false,
-        title: "Temperature",
-        suffix: "oC"
-      },
-      toolTip: {
-        shared: "true"
-      },
-      legend:{
-        cursor:"pointer",
-        itemclick : toggleDataSeries
-      },
-      data: [{
-        type: "spline",
-        visible: true,
-        showInLegend: true,
-        yValueFormatString: "##.00 oC",
-        name: "Node 1",
-        dataPoints: [
-
-        ]
-      }]
-    });
-  chart1.render();
-  function toggleDataSeries(e) {
-  	if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible ){
-  		e.dataSeries.visible = false;
-  	} else {
-  		e.dataSeries.visible = true;
-  	}
-    chart1.render();
-  }
-}
-    </script>
   </body>
 </html>
