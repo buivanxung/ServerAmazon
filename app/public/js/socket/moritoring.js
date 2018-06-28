@@ -447,7 +447,7 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "## oC",
         name: "Node 6",
         dataPoints: dataPoints[5]
       }]
@@ -522,7 +522,7 @@ window.onload = function () {
             label : message[4][i].created_at,
             y : parseInt(message[4][i].temperature)
           });
-          dataPoints[4].push({
+          dataPoints[10].push({
             label : message[4][i].created_at,
             y : parseInt(message[4][i].humidity)
           });
