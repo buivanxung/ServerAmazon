@@ -10,10 +10,31 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <!-- Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-	<link href="css/animate.css" rel="stylesheet" />
+	   <link href="css/animate.css" rel="stylesheet" />
     <!-- Squad theme CSS -->
     <link href="css/style_home.css" rel="stylesheet">
 	<link href="color/default.css" rel="stylesheet">
+  <style media="screen">
+  <style>
+    .content {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 10px;
+    }
+    body {
+        font-family: Arial;
+    }
+
+    .coupon {
+        border: 5px dotted #bbb;
+        width: 100%;
+        border-radius: 15px;
+        margin: 0 auto;
+        max-width: 100%;
+    }
+</style>
+  </style>
 
 </head>
 
@@ -41,8 +62,9 @@
             <div class="wow bounceInUp" data-wow-delay="0.2s">
                 <div class="team boxed-grey">
                       <h5> <center>LoRa Node</center></h5>
-                      <div class="avatar"><img src="img/loranode.png" alt="" class="img-responsive img-circle" style="width: 300px,;
-  height: 200px;" /></div>
+                      <div class="avatar">
+                        <a href="#nodelora"><img src="img/loranode.png" alt="" class="img-responsive img-circle" style="width: 300px,;height: 200px;" /></a>
+                      </div>
                   </div>
             </div>
           </div>
@@ -50,8 +72,9 @@
             <div class="wow bounceInUp" data-wow-delay="0.6s">
                 <div class="team boxed-grey">
                       <h5> <center>LoRa Gateway</center></h5>
-                      <div class="avatar"><img src="img/gateway.png" alt="" class="img-responsive img-circle" style="width: 300px,;
-  height: 200px;" /></div>
+                      <div class="avatar">
+                        <a href="#gatewaylora"><img src="img/gateway.png" alt="" class="img-responsive img-circle" style="width: 300px,;height: 200px;" /></a>
+                      </div>
                   </div>
             </div>
           </div>
@@ -59,8 +82,9 @@
             <div class="wow bounceInUp" data-wow-delay="1s">
                 <div class="team boxed-grey">
                       <h5> <center>Network Server</center></h5>
-                      <div class="avatar"><img src="img/server.jpg" alt="" class="img-responsive img-circle" style="width: 300px,;
-  height: 200px;" /></div>
+                      <div class="avatar">
+                        <a href="#nwserver"><img src="img/server.jpg" alt="" class="img-responsive img-circle" style="width: 300px,;height: 200px;" /></a>
+                        </div>
                   </div>
             </div>
           </div>
@@ -68,8 +92,9 @@
                 <div class="wow bounceInUp" data-wow-delay="1.4s">
                     <div class="team boxed-grey">
                           <h5> <center>Application</center></h5>
-                          <div class="avatar"><img src="img/client.png" alt="" class="img-responsive img-circle" style="width: 300px,;
-      height: 200px;" /></div>
+                          <div class="avatar">
+                            <a href="#appl"><img src="img/client.png" alt="" class="img-responsive img-circle" style="width: 300px,;height: 200px;" /></a>
+                          </div>
                       </div>
                 </div>
           </div>
@@ -86,8 +111,137 @@
             <p style="font-weight: 700; color:white;">  Research, Design and Build a basic monitoring system in building using LoRa Technology </p>
           </div>
     </section>
+    <section id="nodelora" class="home-section text-center">
+      <div class="coupon">
+        <div class="text-center">
+          <h2>Node LoRa</h2>
+        </div>
+        <table style="width: 100%">
+          <tr style="width: 100%" >
+            <th style="width: 50%;">
+              <div class="text-center">
+                  <img src="img/loranode.png" alt="Avatar" style="width:60%; margin: 1 auto;">
+              </div>
+            </th>
+            <th style="width: 50%">
+              <div class="text-left">
+                <p>Trong đó: </p>
+                      <p>- Cửa ngõ giao tiếp I2C, IC Si720L cảm biến nhiệt độ, độ ẩm với độ chính xác cao </p>
+                      <p>- MCU Atmega328 vi điều khiển chính của thiết bị đầu cuối </p>
+                      <p>- Button Reset mạch, anten tấn số 868MHz UIT, hỗ trợ LoRaWan. </p>
+                <p>
+                </p>
+              </div>
+            </th>
+          </tr>
+        </table>
 
+      <div class="container" style="background-color:white">
+        <h2><b>---------------------</b></h2>
+        <p>Board Node LoRa sử dụng vi điều khiển Atmega328 kết hợp với RFM98 tạo thành một thiết bị đầu cuối có thể sử dụng trong mô hình LoRaWAN. Với vi điều khiển Atmega328 chạy với điện áp 3,3v tần số 16Mhz giúp cho mạch chạy sao cho ít tiêu thụ điện năng nhất có thể. </p>
+        <p>Trên mạch được thiết kế cho cả người phát triển thông qua cái chân ra GPIO, UART, I2C, SPI.</p>
+        <p>Mạch đã bao gồm bộ sạc từ nguồn xoay chiều xuống điện một chiều. Mạch hỗ trợ vừa sạc cho pin LiPo, vừa cung cấp nguồn cho mạch. </p>
+        <p>Thơi gian thử nghiệm với Node LoRa. Sử dụng hơn 50 giờ 13 phút liên tục với tần số phát 30 giây gửi đi một gói tin và Pin Lipo 4.2V-800mA. Node chạy theo Lớp C của giao thức LoRaWAN. Điện áp khi sạc đầy 4.2V, điện áp khi ngừng hoạt động 3.4V. </p>
+      </div>
+      <div class="container">
+        <p>Các giao tiếp và cách thước lắp đặt khi ứng dụng thiết bị đầu cuối vào trong các ứng dụng khác như: Trong công nghiệp có thể giao tiếp với các thiết bị công nghiệp thông qua RS232/RS485 để đến với các thành phần điều khiển, giao tiếp với một số MCU khác thông qua giao tiếp SPI/I2C/GIPO để truyền nhận và xử lí dữ liệu. </p>
+      </div>
+    </div>
+    </section>
 
+    <section id="gatewaylora" class="home-section text-center">
+      <div class="coupon">
+        <div class="text-center">
+          <h2>Gateway LoRa</h2>
+        </div>
+        <table style="width: 100%">
+          <tr style="width: 100%" >
+            <th style="width: 50%; maring">
+              <div class="text-center">
+                  <img src="img/gateway.png" alt="Avatar" style="width:60%;">
+              </div>
+            </th>
+            <th style="width: 50%">
+              <div class="text-left">
+                    <p>LoRa Gateway thông số hệ thống của thiết bị: </p>
+                    <p>   - Tần số hỗ trợ 868MHz, hỗ trợ chuyển đổi truyền nhận tín hiệu 8 kênh song song với nhau. </p>
+                    <p>   - Nguồn cung cấp từ 9 – 50V.   </p>
+                    <p>   - Kết nối mạng thông qua Ethernet, WiFi, Dcom 3G. Hỗ trợ truyền nhận dữ liệu LoRaWAN  </p>
+              </div>
+            </th>
+          </tr>
+        </table>
+
+      <div class="container" style="background-color:white">
+        <h2><b>---------------------</b></h2>
+        <p>Là trạm cơ sở, nơi thu thập và phản hồi dữ liệu đến các Node. Thiết bị này đóng vai trò quang trọng trong giao thức LoRaWAN. Vì thể yêu cầu phần thiết kế phần cứng mang tính ổn định cao. Hoạt động liên tục trong thời gian dài. Dưới đây là thông tin LoRa Gateway này: </p>
+        <p>Điện áp hoạt động input nguồn xoay chiều hoặc 5VDC/2.5A. Môi trường nhiệt độ chạy ổn định từ 15 – 45oC </p>
+        <p>LoRa Gateway chạy tần số 868MHz, nhận và xử lí dữ liệu đồng thời 8 kênh cùng lúc. Dãi tần số chạy từ 867.5  869.5MHz. Hỗ trợ kết nối mạng thông qua Cáp Enthernet, WiFi, Dcom 3G được tích hợp sẵn trên thiết bị.</p>
+        <p>Hệ thống phần cứng đảm bảo cách li bên ngoài. Chống nước mưa tránh ánh nắng trực tiếp. </p>
+      </div>
+    </div>
+    </section>
+    <section id="nwserver"  class="home-section text-center">
+      <div class="coupon">
+        <div class="text-center">
+          <h2>Network Server</h2>
+        </div>
+        <table style="width: 100%">
+          <tr style="width: 100%" >
+            <th style="width: 50%; maring">
+              <div class="text-center">
+                  <img src="img/server.jpg" alt="Avatar" style="width:60%;">
+              </div>
+            </th>
+            <th style="width: 50%">
+              <div class="text-left">
+                    <p> Màng hình giao diện quản lí các Gateway tại Network Server. Hiện tại hỗ trợ đa số các loại Gateway LoRa 868MHz ngoài thị trường. VD: Kerlink, Multitech, ....</p>
+                    <p> Giao diên người điều hành thống kê các Node đã đăng kí. Thể hiện các thông tin cần thiết của một Node đố.  </p>
+                    <p> Dễ dàng thiết lập kết nối và hỗ trợ nhiều Network Server kết nối lại với nhau.</p>
+              </div>
+            </th>
+          </tr>
+        </table>
+        <div class="container" style="background-color:white">
+          <h5><b>Mô hình tạo kết nối nhiều Network Server</b></h5>
+          <div class="text-center">
+            <img src="img/mohinh.png" alt="" width="70%">
+          </div>
+        </div>
+    </div>
+    </section>
+    <section id="appl"  class="home-section text-center">
+      <div class="coupon">
+        <div class="text-center">
+          <h2>Application Server</h2>
+        </div>
+        <table style="width: 100%">
+          <tr style="width: 100%" >
+            <th style="width: 50%; maring">
+              <div class="text-center">
+                  <img src="img/client.png" alt="Avatar" style="width:60%;">
+              </div>
+            </th>
+            <th style="width: 50%">
+              <div class="text-left">
+                    <p> Application hỗ trợ cho người dùng kết nối đến Server thông qua giao thức MQTT.</p>
+                    <p> Hiện tại chính trang nay là một nhánh nhỏ của Application Server.</p>
+                    <p> Network Server hỗ trợ REST API để dễ dàng đăng kí hoặc chỉnh sửa thông tin kết nối mà khách hàng đăng kí.</p>
+              </div>
+            </th>
+          </tr>
+        </table>
+        <div class="container" style="background-color:white">
+          <h5><b>Mô hình tạo kết nối nhiều Network Server</b></h5>
+          <div class="text-center">
+            <img src="img/form.jpg" alt="">
+          </div>
+        </div>
+    </div>
+    </section>
+    <div class="gototop js-top">
+        <a href="#homedata" class="js-gotop"><i class="fa fa-arrow-up"></i></a>
+    </div>
     <!-- Core JavaScript Files -->
     <script src="js/js_page/jquery.min.js"></script>
     <script src="js/js_page/bootstrap.min.js"></script>
