@@ -52,6 +52,7 @@ $(document).ready(function()
         }
     });
     socket.on('sending_data_rssi_Node_6', function (data) {
+      console.log(data);
         if (data != "Err") {
           $('#n6Temper').html(data[0].temperature + " &deg;C");
           $('#n6Humid').html(data[0].humidity + " %");
