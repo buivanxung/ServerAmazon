@@ -51,8 +51,7 @@ $(document).ready(function()
           $('#n5Humid').html(data[0].humidity + " %");
         }
     });
-    socket.on('sending_data_rssi_Node_6', function (data) {
-      console.log(data);
+    socket.on('sending_data_show_Node_6', function (data) {
         if (data != "Err") {
           $('#n6Temper').html(data[0].temperature + " &deg;C");
           $('#n6Humid').html(data[0].humidity + " %");
