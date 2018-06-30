@@ -2,7 +2,7 @@
 
 	new WOW().init();
 
-	jQuery(window).load(function() { 
+	jQuery(window).load(function() {
 		jQuery("#preloader").delay(100).fadeOut("slow");
 		jQuery("#load").delay(100).fadeOut("slow");
 	});
@@ -34,5 +34,32 @@
 			event.preventDefault();
 		});
 	});
-
+	$(function(){
+		goToTop();
+	});
 })(jQuery);
+var goToTop = function() {
+
+	$('.js-gotop').on('click', function(event){
+
+		event.preventDefault();
+
+		$('html, body').animate({
+			scrollTop: $('html').offset().top
+		}, 500, 'swing');
+
+		return false;
+	});
+
+	$(window).scroll(function(){
+
+		var $win = $(window);
+		if ($win.scrollTop() > 200) {
+			$('.js-top').addClass('active');
+		} else {
+			$('.js-top').removeClass('active');
+		}
+
+	});
+
+};
