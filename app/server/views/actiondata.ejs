@@ -35,7 +35,6 @@
                     <i class="fa fa-bars"></i>
                 </button>
                 <a class="navbar-brand" href="index.html">
-                  <!--  <h1>LoRa Management Device</h1> -->
                 </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -51,25 +50,26 @@
       <div class="container">
       <div class="row">
         <div class="col-xs-6 col-sm-3 col-md-3">
-              <div class="wow bounceInUp" data-wow-delay="0.2s">
-                      <div class="team boxed-grey">
-                          <div class="inner">
+          <div class="wow bounceInUp" data-wow-delay="0.2s">
+            <div class="team boxed-grey">
+                <div class="inner">
                   <h1>Floor 1</h1>
                   <div class="row">
-                      <div class="col-xs-4 col-sm-4 col-md-4">
-                      <p  class="subtitle">Temper</p>
-                        <h5>  &nbsp;<span id="n1Temper">&deg;C</span></h5>
-                        </div>
-                        <div class="col-xs-5 col-sm-5 col-md-5">
-                        <p class="subtitle">Humid</p>
-                            <h5> &nbsp;<span id="n1Humid">&permil;</span></h5>
-                          </div>
-                  </div>
-                               </div>
+                      <div class="col-xs-4 col-sm-4 col-md-6">
+                        <p  class="subtitle">Temper</p>
+                        <h3> <span id="n1Temper"></span></h3>
                       </div>
-              </div>
+                      <div class="col-xs-5 col-sm-5 col-md-6">
+                        <p class="subtitle">Humid</p>
+                        <h3><span id="n1Humid"></span></h3>
+                      </div>
+                  </div>
+                  <p class="subtitle">Time</p>
+                  <h5><span id="n1Time"></span></h5>
+                </div>
+            </div>
+          </div>
         </div>
-
         <div class="col-xs-12 col-sm-6 col-md-6" center>
           <div class="wow bounceInDown" data-wow-delay="0.4s">
           <div class="section-heading">
@@ -89,117 +89,120 @@
         <hr class="marginbot-50">
       </div>
     </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-3 col-md-3">
-        <div class="wow bounceInUp" data-wow-delay="0.2s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-            <h5>Floor 2</h5>
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<span id="n2Temper">&deg;C</span></h5>
+      <div class="row">
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <div class="wow bounceInUp" data-wow-delay="0.2s">
+            <div class="team boxed-grey">
+                <div class="inner">
+                  <h1>Floor 2</h1>
+                  <div class="row">
+                      <div class="col-xs-4 col-sm-4 col-md-6">
+                        <p  class="subtitle">Temper(&deg;C)</p>
+                        <h3> <span id="n2Temper"></span></h3>
+                      </div>
+                      <div class="col-xs-5 col-sm-5 col-md-6">
+                        <p class="subtitle">Humid(%)</p>
+                        <h3><span id="n2Humid"></span></h3>
+                      </div>
                   </div>
-                  <div class="col-xs-5 col-sm-5 col-md-5">
-                  <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<span id="n2Humid">&permil;</span></h5>
-                    </div>
-            </div>
-                        </div>
+                  <p class="subtitle">Time</p>
+                  <h5><span id="n2Time"></span></h5>
                 </div>
-        </div>
             </div>
-      <div class="col-xs-6 col-sm-3 col-md-3">
-        <div class="wow bounceInUp" data-wow-delay="0.5s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-            <h5>Floor 3</h5>
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<span id="n3Temper">&deg;C</span></h5>
-                  </div>
-                  <div class="col-xs-5 col-sm-5 col-md-5">
-                  <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<span id="n3Humid">&permil;</span></h5>
-                    </div>
-            </div>
-                          </label>
-
-                    </div>
-                </div>
-        </div>
-            </div>
-      <div class="col-xs-6 col-sm-3 col-md-3">
-        <div class="wow bounceInUp" data-wow-delay="0.8s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-            <h5>Floor 4</h5>
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<span id="n4Temper">&deg;C</span></h5>
-                  </div>
-                  <div class="col-xs-5 col-sm-5 col-md-5">
-                  <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<span id="n4Humid">&permil;</span></h5>
-                    </div>
-            </div>
-                          </label>
-
-                    </div>
-                </div>
-        </div>
-            </div>
-      <div class="col-xs-6 col-sm-3 col-md-3">
-        <div class="wow bounceInUp" data-wow-delay="1s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-            <h5>Floor 5</h5>
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<span id="n5Temper">&deg;C</span></h5>
-                  </div>
-                  <div class="col-xs-5 col-sm-5 col-md-5">
-                  <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<span id="n5Humid">&permil;</span></h5>
-                    </div>
-            </div>
-                    </div>
-                </div>
-        </div>
-            </div>
-
-        </div>
-        <div class="row">
-          <div class="col-lg-2 col-lg-offset-5">
-            <hr class="marginbot-50">
           </div>
-
         </div>
-
-        <div class="row">
-            <div class="col-xs-6 col-sm-3 col-md-3">
-        <div class="wow bounceInUp" data-wow-delay="1.2s">
-                <div class="team boxed-grey">
-                    <div class="inner">
-            <h5>Floor 6</h5>
-            <div class="row">
-                <div class="col-xs-4 col-sm-4 col-md-4">
-                <p  class="subtitle">Temper</p>
-                  <h5>  &nbsp;<span id="n6Temper">&deg;C</span></h5>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <div class="wow bounceInUp" data-wow-delay="0.2s">
+            <div class="team boxed-grey">
+                <div class="inner">
+                  <h1>Floor 3</h1>
+                  <div class="row">
+                      <div class="col-xs-4 col-sm-4 col-md-6">
+                        <p  class="subtitle">Temper(&deg;C)</p>
+                        <h3> <span id="n3Temper"></span></h3>
+                      </div>
+                      <div class="col-xs-5 col-sm-5 col-md-6">
+                        <p class="subtitle">Humid(%)</p>
+                        <h3><span id="n3Humid"></span></h3>
+                      </div>
                   </div>
-                  <div class="col-xs-5 col-sm-5 col-md-5">
-                  <p class="subtitle">Humid</p>
-                      <h5> &nbsp;<span id="n6Humid">&permil;</span></h5>
-                    </div>
-            </div>
-            </div>
+                  <p class="subtitle">Time</p>
+                  <h5><span id="n3Time"></span></h5>
                 </div>
-        </div>
             </div>
-    </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <div class="wow bounceInUp" data-wow-delay="0.2s">
+            <div class="team boxed-grey">
+                <div class="inner">
+                  <h1>Floor 4</h1>
+                  <div class="row">
+                      <div class="col-xs-4 col-sm-4 col-md-6">
+                        <p  class="subtitle">Temper(&deg;C)</p>
+                        <h3> <span id="n4Temper"></span></h3>
+                      </div>
+                      <div class="col-xs-5 col-sm-5 col-md-6">
+                        <p class="subtitle">Humid(%)</p>
+                        <h3><span id="n4Humid"></span></h3>
+                      </div>
+                  </div>
+                  <p class="subtitle">Time</p>
+                  <h5> <span id="n4Time"></span></h5>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3">
+          <div class="wow bounceInUp" data-wow-delay="0.8s">
+            <div class="team boxed-grey">
+                <div class="inner">
+                  <h1>Floor 5</h1>
+                  <div class="row">
+                      <div class="col-xs-4 col-sm-4 col-md-6">
+                        <p  class="subtitle">Temper(&deg;C)</p>
+                        <h3><span id="n5Temper"></span></h3>
+                      </div>
+                      <div class="col-xs-5 col-sm-5 col-md-6">
+                        <p class="subtitle">Humid(%)</p>
+                        <h3><span id="n5Humid"></span></h3>
+                      </div>
+                  </div>
+                  <p class="subtitle">Time</p>
+                  <h5><span id="n5Time"></span></h5>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-2 col-lg-offset-5">
+          <hr class="marginbot-50">
+        </div>
+      </div>
+        <div class="row">
+          <div class="col-xs-6 col-sm-3 col-md-3">
+            <div class="wow bounceInUp" data-wow-delay="1.2s">
+              <div class="team boxed-grey">
+                  <div class="inner">
+                    <h1>Floor 6</h1>
+                    <div class="row">
+                        <div class="col-xs-4 col-sm-4 col-md-6">
+                          <p  class="subtitle">Temper(&deg;C)</p>
+                          <h3><span id="n6Temper"></span></h3>
+                        </div>
+                        <div class="col-xs-5 col-sm-5 col-md-6">
+                          <p class="subtitle">Humid (%)</p>
+                          <h3><span id="n6Humid"></span></h3>
+                        </div>
+                    </div>
+                    <p class="subtitle">Time</p>
+                    <h5><span id="n6Time"></span></h5>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
     <div class="row">
       <div class="col-lg-2 col-lg-offset-5">
         <hr class="marginbot-50">
