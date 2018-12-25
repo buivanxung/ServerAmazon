@@ -880,3 +880,18 @@ border: dashed 2px blue;
   line-height: 60px;
 
 }
+#status {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #status td, #status th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  #status th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: rgb(0, 0, 0);
+  }
