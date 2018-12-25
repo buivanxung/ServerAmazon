@@ -1,6 +1,7 @@
 var socket;
 var message = [[],[],[],[],[],[]];
-var limit = 50;
+var dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
+var limit = 15;
 $(document).ready(function()
   {
     socket = io.connect('http://wirelesstech.online:3000',{
@@ -30,14 +31,17 @@ $(document).ready(function()
     });
   })
 window.onload = function () {
-    var dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
+    
     var chart1 = new CanvasJS.Chart("chartContainer", {
       theme:"light2",
       animationEnabled: true,
       zoomEnabled: true,
       title:{
     		text: "Temperature"
-    	},
+      },
+      axisX: {
+        title: "Time"
+      },
     	axisY :{
     		includeZero: false,
     		title: "Temperature",
@@ -50,7 +54,7 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 1",
         dataPoints: dataPoints[0]
       },
@@ -58,7 +62,7 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 2",
         dataPoints: dataPoints[1]
       },
@@ -66,7 +70,7 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 3",
         dataPoints: dataPoints[2]
       },
@@ -74,21 +78,21 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 4",
         dataPoints: dataPoints[3]
       },
       {
         type: "spline",
         showInLegend: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 5",
         dataPoints: dataPoints[4]
       },
       {
         type: "spline",
         showInLegend: true,
-        yValueFormatString: "##.00 oC",
+        yValueFormatString: "##.## oC",
         name: "Node 6",
         dataPoints: dataPoints[5]
       }]
@@ -101,6 +105,10 @@ window.onload = function () {
       title:{
         text: "Humidity"
       },
+      axisX :{
+        title: "Time"
+      }
+      ,
       axisY :{
         includeZero: false,
         title: "Humidity",
@@ -113,7 +121,7 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 1",
         dataPoints: dataPoints[6]
       },
@@ -121,7 +129,7 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 2",
         dataPoints: dataPoints[7]
       },
@@ -129,7 +137,7 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 3",
         dataPoints: dataPoints[8]
       },
@@ -137,21 +145,21 @@ window.onload = function () {
         type: "spline",
         showInLegend: true,
         visible: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 4",
         dataPoints: dataPoints[9]
       },
       {
         type: "spline",
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 5",
         dataPoints: dataPoints[10]
       },
       {
         type: "spline",
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        yValueFormatString: "##.##",
         name: "Node 6",
         dataPoints: dataPoints[11]
       }]
@@ -164,10 +172,14 @@ window.onload = function () {
         title:{
           text: "Humidity"
         },
+        axisX :{
+          title: "Date/Time",
+          xValueFormatString: "hh:mm:ss TT DD-MM",
+        },
         axisY :{
           includeZero: false,
           title: "Humidity",
-          suffix: " %"
+          suffix: "%"
         },
         toolTip: {
           shared: "true"
@@ -176,7 +188,9 @@ window.onload = function () {
           type: "spline",
           visible: true,
           showInLegend: true,
-          yValueFormatString: "##.00 %",
+          xValueType: "dateTime",
+		      xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+          yValueFormatString: "##.##",
           name: "Node 1",
           dataPoints: dataPoints[6]
         }]
@@ -189,10 +203,14 @@ window.onload = function () {
           title:{
             text: "Temperature"
           },
+          axisX :{
+            title: "Date/Time",
+            xValueFormatString: "hh:mm:ss DD-MMM",
+          },
           axisY :{
             includeZero: false,
             title: "Temperature",
-            suffix: " oC"
+            suffix: " oC",
           },
           toolTip: {
             shared: "true"
@@ -201,7 +219,9 @@ window.onload = function () {
             type: "spline",
             visible: true,
             showInLegend: true,
-            yValueFormatString: "##.00 oC",
+            xValueType: "dateTime",
+		        xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+            yValueFormatString: "##.## oC",
             name: "Node 1",
             dataPoints: dataPoints[0]
           }]
@@ -214,6 +234,10 @@ window.onload = function () {
       title:{
         text: "Humidity"
       },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
+      },
       axisY :{
         includeZero: false,
         title: "Humidity",
@@ -226,7 +250,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.##",
         name: "Node 2",
         dataPoints: dataPoints[7]
       }]
@@ -239,6 +265,10 @@ window.onload = function () {
         title:{
           text: "Temperature"
         },
+        axisX :{
+          title: "Date/Time",
+          xValueFormatString: "hh:mm:ss DD-MM",
+        },
         axisY :{
           includeZero: false,
           title: "Temperature",
@@ -251,7 +281,9 @@ window.onload = function () {
           type: "spline",
           visible: true,
           showInLegend: true,
-          yValueFormatString: "##.00 oC",
+          xValueType: "dateTime",
+		      xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+          yValueFormatString: "##.## oC",
           name: "Node 2",
           dataPoints: dataPoints[1]
         }]
@@ -264,6 +296,10 @@ window.onload = function () {
       title:{
         text: "Humidity"
       },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
+      },
       axisY :{
         includeZero: false,
         title: "Humidity",
@@ -276,7 +312,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.##",
         name: "Node 3",
         dataPoints: dataPoints[8]
       }]
@@ -289,6 +327,10 @@ window.onload = function () {
         title:{
           text: "Temperature"
         },
+        axisX :{
+          title: "Date/Time",
+          xValueFormatString: "hh:mm:ss DD-MMM",
+        },
         axisY :{
           includeZero: false,
           title: "Temperature",
@@ -301,7 +343,9 @@ window.onload = function () {
           type: "spline",
           visible: true,
           showInLegend: true,
-          yValueFormatString: "##.00 oC",
+          xValueType: "dateTime",
+		      xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+          yValueFormatString: "##.## oC",
           name: "Node 3",
           dataPoints: dataPoints[2]
         }]
@@ -313,6 +357,10 @@ window.onload = function () {
       title:{
         text: "Humidity"
       },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
+      },
       axisY :{
         includeZero: false,
         title: "Humidity",
@@ -325,7 +373,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.##",
         name: "Node 4",
         dataPoints: dataPoints[9]
       }]
@@ -336,6 +386,10 @@ window.onload = function () {
         zoomEnabled: true,
         title:{
           text: "Temperature"
+        },
+        axisX :{
+          title: "Date/Time",
+          xValueFormatString: "hh:mm:ss DD-MMM",
         },
         axisY :{
           includeZero: false,
@@ -349,7 +403,9 @@ window.onload = function () {
           type: "spline",
           visible: true,
           showInLegend: true,
-          yValueFormatString: "##.00 oC",
+          xValueType: "dateTime",
+		      xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+          yValueFormatString: "##.## oC",
           name: "Node 4",
           dataPoints: dataPoints[3]
         }]
@@ -360,6 +416,10 @@ window.onload = function () {
       zoomEnabled: true,
       title:{
         text: "Humidity"
+      },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
       },
       axisY :{
         includeZero: false,
@@ -373,7 +433,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.##",
         name: "Node 5",
         dataPoints: dataPoints[10]
       }]
@@ -386,6 +448,10 @@ window.onload = function () {
         title:{
           text: "Temperature"
         },
+        axisX :{
+          title: "Date/Time",
+          xValueFormatString: "hh:mm:ss DD-MMM",
+        },
         axisY :{
           includeZero: false,
           title: "Temperature",
@@ -398,7 +464,9 @@ window.onload = function () {
           type: "spline",
           visible: true,
           showInLegend: true,
-          yValueFormatString: "##.00 oC",
+          xValueType: "dateTime",
+		      xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+          yValueFormatString: "##.## oC",
           name: "Node 5",
           dataPoints: dataPoints[4]
         }]
@@ -409,6 +477,10 @@ window.onload = function () {
       zoomEnabled: true,
       title:{
         text: "Humidity"
+      },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
       },
       axisY :{
         includeZero: false,
@@ -422,7 +494,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 %",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.##",
         name: "Node 6",
         dataPoints: dataPoints[11]
       }]
@@ -433,6 +507,10 @@ window.onload = function () {
       zoomEnabled: true,
       title:{
         text: "Temperature"
+      },
+      axisX :{
+        title: "Date/Time",
+        xValueFormatString: "hh:mm:ss DD-MMM",
       },
       axisY :{
         includeZero: false,
@@ -446,7 +524,9 @@ window.onload = function () {
         type: "spline",
         visible: true,
         showInLegend: true,
-        yValueFormatString: "##.00 oC",
+        xValueType: "dateTime",
+		    xValueFormatString: "hh:mm:ss DD-MMM-YYYY",
+        yValueFormatString: "##.## oC",
         name: "Node 6",
         dataPoints: dataPoints[5]
       }]
@@ -469,72 +549,72 @@ window.onload = function () {
       if (message[0] != " ") {
         for (var i = limit - 1; i >= 0; i--){
           dataPoints[0].push({
-            label : message[0][i].created_at,
-            y : parseInt(message[0][i].temperature)
+            x : new Date(message[0][i].created_at),
+            y : parseFloat(message[0][i].temperature)
           });
           dataPoints[6].push({
-            label : message[0][i].created_at,
-            y : parseInt(message[0][i].humidity)
+            x : new Date(message[0][i].created_at),
+            y : parseFloat(message[0][i].humidity)
           });
           }
         }
       if (message[1] != " ") {
-        for (var i = message[1].length - 1; i >= 0; i--){
+        for (var i = limit - 1; i >= 0; i--){
           dataPoints[1].push({
-            label : message[1][i].created_at,
-            y : parseInt(message[1][i].temperature)
+            x : new Date(message[1][i].created_at),
+            y : parseFloat(message[1][i].temperature)
           });
           dataPoints[7].push({
-            label : message[1][i].created_at,
-            y : parseInt(message[1][i].humidity)
+            x : new Date(message[1][i].created_at),
+            y : parseFloat(message[1][i].humidity)
           });
           }
         }
       if (message[2] != " ") {
-        for (var i = message[2].length - 1; i >= 0; i--){
+        for (var i = limit - 1; i >= 0; i--){
           dataPoints[2].push({
-            label : message[2][i].created_at,
-            y : parseInt(message[2][i].temperature)
+            x : new Date(message[2][i].created_at),
+            y : parseFloat(message[2][i].temperature)
           });
           dataPoints[8].push({
-            label : message[2][i].created_at,
-            y : parseInt(message[2][i].humidity)
+            x : new Date(message[2][i].created_at),
+            y : parseFloat(message[2][i].humidity)
           });
           }
         }
       if (message[3] != " ") {
-        for (var i =message[3].length - 1; i >= 0; i--){
+        for (var i = limit - 1; i >= 0; i--){
           dataPoints[3].push({
-            label : message[3][i].created_at,
-            y : parseInt(message[3][i].temperature)
+            x : new Date(message[3][i].created_at),
+            y : parseFloat(message[3][i].temperature)
           });
           dataPoints[9].push({
-            label : message[3][i].created_at,
-            y : parseInt(message[3][i].humidity)
+            x : new Date(message[3][i].created_at),
+            y : parseFloat(message[3][i].humidity)
           });
           }
         }
       if (message[4] != " ") {
-        for (var i = message[4].length - 1; i >= 0; i--){
+        for (var i = limit - 1; i >= 0; i--){
           dataPoints[4].push({
-            label : message[4][i].created_at,
-            y : parseInt(message[4][i].temperature)
+            x : new Date(message[4][i].created_at),
+            y : parseFloat(message[4][i].temperature)
           });
           dataPoints[10].push({
-            label : message[4][i].created_at,
-            y : parseInt(message[4][i].humidity)
+            x : new Date(message[4][i].created_at),
+            y : parseFloat(message[4][i].humidity)
           });
           }
         }
       if (message[5] != " ") {
-        for (var i = message[5].length - 1; i >= 0; i--){
+        for (var i = limit - 1; i >= 0; i--){
           dataPoints[5].push({
-            label : message[5][i].created_at,
-            y : parseInt(message[5][i].temperature)
+            x : new Date(message[5][i].created_at),
+            y : parseFloat(message[5][i].temperature)
           });
           dataPoints[11].push({
-            label : message[5][i].created_at,
-            y : parseInt(message[5][i].humidity)
+            x : new Date(message[5][i].created_at),
+            y : parseFloat(message[5][i].humidity)
           });
           }
         }
