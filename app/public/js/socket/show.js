@@ -76,14 +76,14 @@ $(document).ready(function()
     s = time.split("T");
     t = s[1].split(":");
     d = s[0].split("-");
-    tS = t[2];
+    tS = t[2].split(".");
     tM = t[1];
-    tH = t[0]*1 + 7*1;
-    if (tH >= 24) {
-      tH = tH - 24;
+    tH = t[0]*1 + 2*1;
+    if (tH > 12) {
+      tH = tH - 12;
     }
     dD = d[2];
     dM = d[1];
     dY = d[0];
-    return " "+ tH + ":" + tM + ":" + tS + "  " + dD + "/" + dM + "/" + dY;
+    return " "+ tH + ":" + tM + ":" + tS[0] + "  " + dD + "/" + dM;
   }

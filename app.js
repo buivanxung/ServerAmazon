@@ -29,20 +29,20 @@ app.get('/', function(req, res){
 io.on('connection', function (socket) {
   console.log("New connection");
   socket.on('reciver_data_rssi', function(data) {
-    query_page_rssi("Node_1","100");
-    query_page_rssi("Node_2","100");
-    query_page_rssi("Node_3","100");
-    query_page_rssi("Node_4","100");
-    query_page_rssi("Node_5","100");
-    query_page_rssi("Node_6","100");
+    query_page_rssi("Node_1","50");
+    query_page_rssi("Node_2","50");
+    query_page_rssi("Node_3","50");
+    query_page_rssi("Node_4","50");
+    query_page_rssi("Node_5","50");
+    query_page_rssi("Node_6","50");
     setInterval(function () {
-      query_page_rssi("Node_1","100");
-      query_page_rssi("Node_2","100");
-      query_page_rssi("Node_3","100");
-      query_page_rssi("Node_4","100");
-      query_page_rssi("Node_5","100");
-      query_page_rssi("Node_6","100");
-    }, 10000);
+      query_page_rssi("Node_1","50");
+      query_page_rssi("Node_2","50");
+      query_page_rssi("Node_3","50");
+      query_page_rssi("Node_4","50");
+      query_page_rssi("Node_5","50");
+      query_page_rssi("Node_6","50");
+    }, 5000);
   })
   socket.on('reciver_data_show', function(data) {
     query_page_show("Node_1");
@@ -58,23 +58,23 @@ io.on('connection', function (socket) {
       query_page_show("Node_4");
       query_page_show("Node_5");
       query_page_show("Node_6");
-    }, 10000);
+    }, 5000);
   })
   socket.on('reciver_data_moritoring', function(data) {
-    query_page_moritoring("Node_1","100");
-    query_page_moritoring("Node_2","100");
-    query_page_moritoring("Node_3","100");
-    query_page_moritoring("Node_4","100");
-    query_page_moritoring("Node_5","100");
-    query_page_moritoring("Node_6","100");
+    query_page_moritoring("Node_1","50");
+    query_page_moritoring("Node_2","50");
+    query_page_moritoring("Node_3","50");
+    query_page_moritoring("Node_4","50");
+    query_page_moritoring("Node_5","50");
+    query_page_moritoring("Node_6","50");
     setInterval(function () {
-      query_page_moritoring("Node_1","100");
-      query_page_moritoring("Node_2","100");
-      query_page_moritoring("Node_3","100");
-      query_page_moritoring("Node_4","100");
-      query_page_moritoring("Node_5","100");
-      query_page_moritoring("Node_6","100");
-    }, 10000);
+      query_page_moritoring("Node_1","50");
+      query_page_moritoring("Node_2","50");
+      query_page_moritoring("Node_3","50");
+      query_page_moritoring("Node_4","50");
+      query_page_moritoring("Node_5","50");
+      query_page_moritoring("Node_6","50");
+    }, 5000);
   })
 function query_page_rssi(nameNode, limitNumber) {
   pool.connect(function (err, client, done) {

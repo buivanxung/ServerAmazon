@@ -370,8 +370,14 @@ Home data
 ============================ */
 
 .boxed-grey {
-	background: #f9f9f9;
-	padding: 20px;
+	background: #f8fff7;
+    padding: 20px;
+    border-width: 3px;
+    border-style: solid;
+    border-color: rgb(0, 167, 144);
+    border-radius:12%;
+    -moz-border-radius:12%;
+    -webkit-border-radius:12%;
 }
 
 .team h5 {

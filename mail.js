@@ -70,10 +70,9 @@ transporter.use('compile',hps({
   	   var deviceName = getdata('deviceName', parse_data);
   	   var devEUI = getdata('devEUI', parse_data);
 
-  	   var codeRate = getdata('txInfo.codeRate', parse_data);
 
   	   var phyPayload1 = getdata('data', parse_data);
-  	   if(codeRate != null) {
+  	   if(phyPayload1 != null) {
   	 	       var raw_data = phyPayload1.toString();
   	         var buf = new Buffer(phyPayload1,'base64');
   	         var phyPayload2 = buf.toString();
