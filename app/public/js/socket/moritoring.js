@@ -1,6 +1,6 @@
 var socket;
 var message = [[],[],[],[],[],[]];
-var limit = 100;
+var limit = 50;
 $(document).ready(function()
   {
     socket = io.connect('http://wirelesstech.online:3000',{
