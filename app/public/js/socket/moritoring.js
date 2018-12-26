@@ -4,7 +4,7 @@ var dataPoints = [[],[],[],[],[],[],[],[],[],[],[],[]];
 var limit = 15;
 $(document).ready(function()
   {
-    socket = io.connect('http://wirelesstech.online:3000',{
+    socket = io.connect('http://wirelesstech.online:8083',{
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionDelayMax : 5000,
