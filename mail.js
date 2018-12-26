@@ -82,7 +82,7 @@ transporter.use('compile',hps({
              var name = deviceName.split("_");
              var floor = "Floor" + " " + name[1];
              var time = new Date() ;
-             if ( temper != null ) {
+             if ( temper*1 > 35 || humid*1 < 60 ) {
                transporter.sendMail({
                     from: 'anhxungce@gmail.com',
                     to: 'quangceuit@gmail.com',
