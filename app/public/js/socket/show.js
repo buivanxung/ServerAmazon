@@ -233,7 +233,7 @@ $(document).ready(function()
     d = s[0].split("-");
     tS = t[2].split(".");
     tM = t[1];
-    tH = t[0]*1;
+    tH = t[0]*1 + 2*1;
     if (tH > 12) {
       tH = tH - 12;
     }
