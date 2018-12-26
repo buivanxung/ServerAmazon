@@ -82,10 +82,10 @@ transporter.use('compile',hps({
              var name = deviceName.split("_");
              var floor = "Floor" + " " + name[1];
              var time = new Date() ;
-             if ( temper > 20 || humid > 60 ) {
+             if ( temper != null ) {
                transporter.sendMail({
                     from: 'anhxungce@gmail.com',
-                    to: 'xungbv.uit@gmail.com',
+                    to: 'quangceuit@gmail.com',
                     subject:'System Warning',
                     template:'mail',
                     context: {
