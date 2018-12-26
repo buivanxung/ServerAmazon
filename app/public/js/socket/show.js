@@ -237,7 +237,7 @@ $(document).ready(function()
     if (tH > 12) {
       tH = tH - 12;
     }
-    dD = d[2];
+    dD = d[2]*1 + 1*1;
     dM = d[1];
     dY = d[0];
     return " "+ tH + ":" + tM + ":" + tS[0] + "  "+ "  " + dD + "/" + dM;
