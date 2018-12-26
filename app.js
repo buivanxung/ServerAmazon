@@ -136,6 +136,9 @@ function query_page_show(nameNode) {
       });
     });
   }
+  socket.on('disconnect', () => {
+    console.log('Socket disconnected: ')
+  })
 });
 http.listen(8083, function () {
   console.log("Server running");

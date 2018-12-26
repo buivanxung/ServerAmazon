@@ -63,6 +63,9 @@ io.on('connection', function (socket) {
     client.on('close', function () {
          console.log(clientId + ' disconnected')
     });
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected: ')
+    })
 })
 http.listen(5050, function () {
   console.log("Server running");
