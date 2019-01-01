@@ -1,0 +1,163 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+h2 {
+  margin: 0 0 10px 0;
+  font-weight: bold;
+  color: #fff;
+}
+h6 {
+  margin: 2px 0 20px 0;
+}
+hr {
+  margin: 0px 0px 0px 0px;
+  border: transparent;
+}
+ul {
+  margin: 4px 0 0 0;
+}
+label,
+h6 {
+  color: #dfdfdf;
+  font-size: 13px;
+  font-weight: normal;
+}
+.well {
+  background : transparent;
+  margin-bottom: 10px;
+}
+.well .tab-title {
+  float: left;
+  margin-left: 10px;
+}
+input {
+  width: 95%;
+  background-color: transparent;
+  margin: 0 0 10px 0;
+  border: 1px solid rgb(104, 102, 102); 
+  padding: 7px;
+  color: aqua;
+  border-radius: 10px 10px;
+}
+button {
+  background-color: transparent;
+  margin: 0 0 10px 0;
+  border: 1px solid rgb(104, 102, 102); 
+  padding: 3px;
+  padding: 12px;
+  color: aqua;
+  border-radius: 10px 10px;
+}
+button:hover {
+  color: rgb(37, 102, 12);
+  background-color: rgb(252, 247, 225);
+}
+.well .button-top-right {
+  float: right;
+}
+.navbar-btn {
+  min-width: 100px;
+  margin-right: 1px;
+}
+.navbar-btn .btn {
+  min-width: 100px;
+ 
+}
+.glyphicon {
+  margin: 0px 10px 10px 0px;
+}
+/*
+	login window
+*/
+#login label {
+  margin-left: 2px;
+}
+#login form {
+  width: 320px;
+}
+#login .controls {
+  margin-top: 20px;
+}
+#login .controls .button-rememember-me {
+  float: left;
+  width: 150px;
+}
+#login .controls .button-sign-in {
+  float: right;
+  width: 120px;
+}
+#login .btm-links {
+  font-size: 0.9em;
+  margin: 2px 0 0 0;
+  color: #eee;
+  background-color: #eee;
+}
+#login .btm-links #forgot-password {
+  float: left;
+  margin-left: 0px;
+  font-size: 13px;
+  color: white;
+}
+#login .btm-links #create-account {
+  float: right;
+  margin-right: 0px;
+  font-size: 13px;
+  color: white;
+}
+#account-form-container form {
+  width: 460px;
+}
+/*
+	modal windows
+*/
+.modal .modal-dialog {
+  width: 480px;
+}
+.modal .form-group {
+  margin-bottom: 0px;
+}
+.modal .alert {
+  margin-top: 10px;
+  margin-bottom: 0;
+  padding: 8px 15px 8px 15px;
+}
+.modal .alert-dismissable,
+.modal .close {
+  right: -4px;
+}
+.modal p {
+  margin: 0;
+  padding: 0;
+}
+.modal .modal-footer button {
+  width: 80px;
+}
+.center-vertical {
+  height: 100vh;
+}
+.center-vertical form {
+  top: 50%;
+  margin: auto;
+  position: relative;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+.form-horizontal .form-buttons {
+  float: right;
+}
+.form-horizontal .form-buttons .btn {
+  width: 80px;
+  margin-left: 6px;
+}
+.form-horizontal input,
+.form-horizontal select {
+  height: 30px;
+}
+a  {
+  color: #9e9c9c;
+}
+a:hover {
+  color: rgb(253, 253, 253);
+}
