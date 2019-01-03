@@ -73,7 +73,7 @@ var x = "Total Width: " + screen.width;
     // Event handling
     setInterval(function(){
         mouseMove();
-    }, 1000);
+    }, Math.floor((Math.random() * 10000) + 1000));
     // Event handling
     function addListeners() {
         window.addEventListener('scroll', scrollCheck);
