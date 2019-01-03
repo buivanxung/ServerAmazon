@@ -81,7 +81,7 @@ var x = "Total Width: " + screen.width;
     }
 
     function mouseMove(e) {
-        target.x = Math.floor((Math.random() * width) + 100);
+        target.x = width/2 + Math.floor((Math.random() * 200) + 10);
         target.y = Math.floor((Math.random() * height) + 100);
     }
 
@@ -121,8 +121,8 @@ var x = "Total Width: " + screen.width;
                     points[i].active = 0.02;
                     points[i].circle.active = 0.1;
                 } else {
-                    points[i].active = 0;
-                    points[i].circle.active = 0;
+                    points[i].active = 0.01;
+                    points[i].circle.active = 0.05;
                 }
 
                 drawLines(points[i]);
