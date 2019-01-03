@@ -73,7 +73,7 @@ var x = "Total Width: " + screen.width;
     // Event handling
     setInterval(function(){
         mouseMove();
-    }, Math.floor((Math.random() * 10000) + 1000));
+    }, Math.floor((Math.random() * 4000) + 1000));
     // Event handling
     function addListeners() {
         window.addEventListener('scroll', scrollCheck);
@@ -81,8 +81,8 @@ var x = "Total Width: " + screen.width;
     }
 
     function mouseMove(e) {
-        target.x = Math.floor((Math.random() * width) + 10);
-        target.y = Math.floor((Math.random() * height) + 10);
+        target.x = Math.floor((Math.random() * width) + 100);
+        target.y = Math.floor((Math.random() * height) + 100);
     }
 
     function scrollCheck() {
