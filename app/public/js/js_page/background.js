@@ -71,26 +71,18 @@ var x = "Total Width: " + screen.width;
     }
 
     // Event handling
+    setInterval(function(){
+        mouseMove();
+    }, 1000);
+    // Event handling
     function addListeners() {
-        if(!('ontouchstart' in window)) {
-            window.addEventListener('mousemove', mouseMove);
-        }
         window.addEventListener('scroll', scrollCheck);
         window.addEventListener('resize', resize);
     }
 
     function mouseMove(e) {
-        var posx = posy = 10;
-        if (e.pageX || e.pageY) {
-            posx = e.pageX;
-            posy = e.pageY;
-        }
-        else if (e.clientX || e.clientY)    {
-            posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-            posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-        }
-        target.x = posx;
-        target.y = posy;
+        target.x = Math.floor((Math.random() * width) + 10);
+        target.y = Math.floor((Math.random() * height) + 10);
     }
 
     function scrollCheck() {
