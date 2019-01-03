@@ -318,8 +318,9 @@ Home data
 .intro {
 	width:100%;
 	position:relative;
-
-	background: url(../img/bg2.jpg) no-repeat top center;
+    background: url(../img/bg2.png) no-repeat;
+    background-size: cover;
+    background-blend-mode: difference;
 }
 
 #intro.intro {
@@ -660,39 +661,6 @@ Parallax
     -moz-animation-timing-function: linear;
 }
 
-@-webkit-keyframes pulse {
-    0 {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-
-    50% {
-        -webkit-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-
-    100% {
-        -webkit-transform: scale(1);
-        transform: scale(1);
-    }
-}
-
-@-moz-keyframes pulse {
-    0 {
-        -moz-transform: scale(1);
-        transform: scale(1);
-    }
-
-    50% {
-        -moz-transform: scale(1.2);
-        transform: scale(1.2);
-    }
-
-    100% {
-        -moz-transform: scale(1);
-        transform: scale(1);
-    }
-}
 
 
 #text {
